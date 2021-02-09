@@ -1,0 +1,350 @@
+%\documentclass[a4paper,11pt]{article}
+
+%\newcommand*{\rom}[1]{\expandafter\@slowromancap\romannumeral %#1@}
+%\makeatother
+%\usepackage{wrapfig}
+\documentclass[12pt]{article}
+\usepackage{graphicx}
+
+\usepackage{lingmacros}
+\usepackage{blindtext}
+\usepackage{tree-dvips}
+\usepackage{amsmath}
+\usepackage{multicol}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage[table]{xcolor}
+\usepackage{textcomp}
+\usepackage{floatrow}
+%\usepackage{romannum} %for roman numbers
+\graphicspath{ {./Latex/} }
+%\makeatletter
+
+\newcommand*{\rom}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\makeatother
+
+\begin{document}
+
+\title{Can AROME climate output be used to produce IDF-values?}
+\date{date}
+\author{Eirik Nordgård\\ Geophysical Institute,\ University of Oslo}
+
+
+%\twocolumn[
+%\begin{@twocolumnfalse}
+\maketitle
+%\begin{abstract}
+%Write abstract here. 
+%\end{abstract}
+\section{Abstract}
+
+Tanker: 
+
+For Blindern: se på returverdiene for 9 gridpunkt rudnt stasjon. Plot alle.  Se på relativ avstand mellom modell og stasjon. Gjør dette for 2,5 og 10 år returperiode for å se om det er noe bias som er konsistent mellom returperiodene. 
+
+
+\textbf{Malte, if you can read this sentence please write a response!} 
+
+%\end{@twocolumnfalse}
+%]
+\
+\section{Introduction}
+
+\subsection{Introduction}
+Introduction here 
+\subsection{Research aim?}
+Firstly the main goal for this thesis was to investigate how future IDF values differ from values obtained by historic station data. The idea was to verify the general opinion on increased precipitation extremes through the IDF curved derived by modelled data. One step towards this goal is to verify whether the modelled precipitation can at all be used for this purpose. To check this, I must first evaluate the IDF-values against some stations. Along the way I must define what return periods are realistically represented by the data. If they match I can proceed to do an analysis of other locations. If not I should investigate why, or to what extent these data can be used in terms of IDF values in Norway.
+
+\section{Background}
+\subsection{Meteorological Background}
+
+Explain convention and what generally causes the most extreme precipitation on the different durations. Present some typical precipitation values at the selected durations values?
+
+Maybe the GEO4902 work can be included here in the background? Or it can be included as a separate section to highlight problems with forecasting extreme events? This can also be used to justify why we have to choose the maximum values from multiple grid.boxes around the respective station.   
+
+\subsection{Area and Data}
+
+....Initially the idea was to calculate the IDF-values for one or two stations in each county in southern Norway. Using only Oslo as a start to check if the analysis is possible. Data from several stations in Oslo was available and processed, so it felt natural to start with this region. The processing is done by Lars Grinde (?) at MET.  
+
+\textbf{the section "measurements" in Lutz et al., 2020 has the description of the station data. Essentially annual maxima for each duration and station.} Tipping bucket pluviometers does not function properly during winter, so this is basically summer-data. Time series of 10 years is concidered an asolute minimum here, hence the choice of these 12 stations (you can also include the two from Bærum if you get the data). 
+
+{\rowcolors{3}{gray!40}{white}
+\begin{tabular}{ |p{3cm}||p{3cm}||p{3cm}||p{3cm}|  }
+ \hline
+ \multicolumn{4}{|c|}{\textbf{Stations (Oslo)}} \\
+ \hline
+ Station Name & Station NR & No. years & UTM coord.\\
+ \hline
+ Ljabruveien   & 17980  & 17 &   xxx\\
+ Lambergseter & 18020 & 25 & xxx\\
+ Hovin & 18210 & 17 & xxx\\
+ Haugenstua & 18269 & 15 & xxx\\
+ Vestli & 18270 & 32 & xxx\\
+ Hausmannsgt & 18320 & 20 & xxx\\
+ Disen & 18420 & 20 & xxx\\
+ Vestre Vika & 18640 & 13 & xxx\\
+ Blindern PLU & 18701 & 48 & xxx\\
+ Bygdøy & 18815 & 16 & xxx\\
+ Besserud & 18920 & 13 & xxx\\
+ Lilleaker & 18980 & 13 & xxx\\
+ 
+ \hline
+\end{tabular}
+
+Continue here on the AM of the stations.
+
+Describe data from stations used for verification 
+
+
+\section{Method}
+\subsection{You should clarify these things:}
+
+\begin{itemize}
+\item The GEV framework 
+\item The Bayesian framework, highlight probabilistic aspect and advantages (and disadvantages)
+\item Some description/justification of the chosen return levels and duration
+\item Describe the station data from MET. Describe the modelled data from AROME. 
+\item If there are any other aspects of the code you should include this as well.
+\item maybe a short paragraph on the choice/restriction on the shape parameter. 
+\item Later: describe how the performance of the historic modelled vs. measurement-based curves are evaluated. 
+\end{itemize}
+
+Clarify with Malte how to refer to Julia and Anitaz study. My study is after all (to a degree) based on their method, and this should be highlighted somewhere and probably in a certain way?
+
+\subsection{The General Idea of IDF values} 
+
+
+Intensity-Duration-Frequency (IDF) curves comprise an estimate of rainfall intensities of different durations and recurrence intervals. Durations commonly range from minutes to days and recurrence intervals often range from a year to a couple hundreds of years. \textbf{insert example of IDF values for a given duration and return period as illustration}. The curves can either be calculated for a large region or for a single point. Depending on the topography and governing precipitation processes and patterns the IDF values may differ quite a lot between locations only kilometres apart. \textit{Duration} refers to the length of the precipitation event. Maximum rainfall intensity for each duration can be related to corresponding\textit{recurrence intervals} or \textit{return periods}. The return period is defined as $T = 1/P$ where $P$ is the annual exceedance probability. $P = 0.1$  (10\%)  implies that a precipitation event of a certain magnitude has a return period $T$ of ten years. It can also be interpreted as a 10\% chance of exceeding the given magnitude in any year. \textbf{this is just my understanding.find a source on this?}. (https://web.arch.virginia.edu/struct/arch721/content/lectures/lec-06/page-2.html) Thus, the higher return period $T$ of an event, the less likely it is that this event will occur during a given year. \textbf{possibly elaborate on this from the previous link}. The corresponding cumulative Distribution Frequency (CDF) $F$ will be: $F = 1-P = 1-1/T$. Once $F$ is known the maximum rainfall intensity for each duration and return period is determined through the chosen PDF (e.g GEV, Pearson type \textbf{3 in roman} distributions, Gumbel) (Nhat et al., 2006). IDF curves can then be presented as precipitation from one duration at all return periods and as precipitation at one return period on all durations. 
+
+
+\subsection{IDF calculation packages}
+
+R software and packages on extreme value statistics has been used to perform the IDF calculations (R Core Team, 2013). R is a language and environment for statistical computing and graphics, and the R software is available as Free Software under the terms of the Free Software Foundation's GNU General Public License (https://www.r-project.org/about.html). Functionalities in the R package \textit{extRemes}, Weather and Climate Applications of Extreme Value Analysis, have been used for an extreme value analysis. The package allows for parameter-estimation on extreme-value distributions, implementation of different inference methods and more(extRemes by Gilleland, 2020). The function \textit{fevd} with arguments \textit{type=GEV} and \textit{method=Bayesian} fits the univariate general extreme value distribution to the precipitation data(RDocumentation, fevd). The type-argument states which extreme value distribution to fit to data, while the method-argument states which type of estimation method should be used. The fit is done for desired quantiles and return levels for all durations is calculated.  
+
+ 
+
+\subsection{Practices in Computation of IDF values}
+
+Short-duration precipitation statistics is often presented with Intensity-Duration-Frequency (IDF) curves. IDF curves provide information on duration and frequency of pre-defined precipitation events, and they are often used in planning and design of infrastructure and other water-managing structures. There are many ways to calculate IDF values, thus different methods are used in different countries. In Sweden two of these have been applied when Olsson et al. (2019) fitted the Generalized Extreme Values (GEV) distribution to block maxima and the Generalized Pareto distribution to Peak-Over-Threshold events (Hosking et al., 1987) to calculate regional short-duration rainfall. In Québec in Canada was a Bayesian approach with standard parameter estimation for the GEV distribution used (Huard et al., 2010). In this study the Bayesian approach was recommended for further studies as it implicitly include an estimation of the uncertainty of the IDF values. Mohymont et al. (2004) used a GEV distribution and a Gumbel distribution to establish IDF-curves for the tropical Central Africa. The most recent methodology for estimating IDF values in Norway is based on fitting a Gumbel distribution to the N-highest measurements (N being the time-series length in years). Lutz et al. (2020) explored ways to update the Norwegian IDF routine, fitting a General Extreme Value (GEV) distribution for annual maximum precipitation using a modified Maximum Likelihood estimation and a Bayesian inference. Here the Bayesian method performed best in two goodness-of-fit tests and thus was recommended for IDF estimation for Oslo in Norway.
+
+One profound challenge in estimating IDF values for extreme precipitation is the availability of data. Short data series yields very large uncertainties in precipitation magnitude for large return periods. To properly analyse IDF curves and the potential impacts of the events they describe it is crucial to capture and understand the uncertainties of the curves. As recommended in Huard et al. (2010) and practised in Lutz et al. (2020) fitting an GEV distribution using a Bayesian method will be applied in this study for best estimates of the IDF values and well-described uncertainty.  
+ 
+
+\subsection{GEV distribution and extreme value statistics}
+
+Extreme value theory provides the statistical framework needed to infer probability of very rare or extreme events. The Generalized Extreme Value distribution describes a family of three possible types of distributions of block maxima of a given variable, allowing a continuous range of possible distribution shapes. These distributions are called Type \rom{1}, Type \rom{2} or Type \rom{3}, also known as Gumbel, Fréchet and Weibull respectively. The block maxima distribution converges to a GEV, G(x), distribution once the record length approaches infinity. Being a three-parameter distribution, G(x) can be written on the form:
+
+\begin{equation}
+	G(x) = exp\bigg\{-\left[1+\zeta(\frac{x-\mu}{\sigma})\right]^\frac{-1}{\zeta}\bigg\}
+	\label{eq:gev}
+\end{equation}
+
+for 
+\begin{equation}
+	1+\zeta(\frac{x-\mu}{\sigma} \textgreater 0
+\end{equation}
+
+where $\mu$ is location, $\sigma$ is scale and $\zeta$ is shape (Dyrrdal et al., 2015). Since the extremes are determined from the tail of the distribution, they are heavily affected by the choice of $\zeta$. $\zeta$ determines whether the distribution converges towards Gumbel ($\zeta$=0) with a light upper tail, Fréchet ($\zeta$\textgreater0) with a heavy upper tail or Weibull ($\zeta$\textless0) which is bounded from above (Dyrrdal et al., 2014). As the shape parameter describes the tail of the distribution it will severely affect the estimates for long return periods. The shape parameter can be both positive and negative, depending on the location of interest. Poor choice of this parameter may provide unrealistic precipitation estimates, especially on the longer return periods, thus Lutz et al. (2020) introduced a prior distribution to constrain the $\zeta$ parameter of the GEV distribution.\textbf{(or should I refer to the paper she is referring to (the original source)?.}. Maybe include some more information on on the parameters? 
+
+\subsection{Bayesian Approach}
+\subsubsection{Basics}
+In general the goal is to estimate parameters of a distribution to best fit data. Given a generic parameter $\beta$, the likelihood function is the probability density of the observed data as a function of $\beta$. $\beta$s with high likelihood correspond to models which give high probability to the observed data. Traditionally, a maximum likelihood estimation seeks to adopt the model with greatest likelihood, namely the model that assigns the highest probability to the observed data. Bayesian inference provide an alternative method to draw inference from a likelihood function (http://www.mas.ncl.ac.uk/~nlf8/shortcourse/part5.pdf many things are well formulated in this pdf, but I havent found its origin yet). 
+
+Here a Bayesian inference is used to estimate one probability distribution for the parameter set $\sigma$ containing the three GEV parameters, $\alpha = (\sigma, \zeta, \mu)$. These parameters are treated as random variables with prior distributions, distributions of the parameter prior to the inclusion of data $x = (x_1, x_2,...,x_n)$. Bayes` Theorem (need source?) states that the probability of an event is dependent on prior knowledge of conditions that are relevant to the event. The theorem states:
+
+\begin{equation}
+P(\alpha \vert x) = \frac{L(x \vert \alpha)P(\alpha)}{P(x)},
+\label{bays}
+\end{equation}
+
+where $P(\alpha \vert x)$ is the probability density function of $\alpha$ given the observations $x$. $L(x \vert \alpha)$ is the likelihood function an $P(\alpha)$ is the GEV parameters (prior probability of $\alpha$, better to use this instead of "GEV parameters"?). Since $P(x)$ is constant Equation \eqref{bays} can be written as 
+
+\begin{equation}
+P(\alpha \vert x)\propto L(x \vert \alpha)P(\alpha)
+\end{equation}  
+or
+\begin{equation}
+posterior \propto prior * likelihood
+\end{equation}
+where the $posterior$ is the distribution of $\alpha$ after the inclusion of data. As done in Lutz et al. (2020) $P(\alpha \vert x)$ is sampled using the Markov Chain Monte Carlo (MCMC) method with 50,000 iterations, where the last 3000 is used to have stability in the simulated parameters. \textbf{maybe include some background in MCMC as well?}. Furthermore, the posterior distribution allows for direct derivation of quantiles. Here the 95\% credible interval is used.  
+\subsubsection{Advantages}
+Choosing a Bayesian analysis of extremes over a more traditional likelihood approach can have various advantages. Incorporating other sources of information, like a prior distribution, to the analysis is considered a large advantage given the scarce nature of the extremes. Making good use of any knowledge on the distribution Another major advantage is that the variance of the posterior distribution can be used can be used to calculate the precision of the inference. This way the resulting IDF values can be presented with desired confidence levels.   
+
+%http://www.mas.ncl.ac.uk/~nlf8/shortcourse/part5.pdf
+
+%https://www.researchgate.net/publication/226610355_A_full_Bayesian_approach_to_generalized_maximum_likelihood_estimation_of_generalized_extreme_value_distribution
+
+
+\subsection{Application of GEV distribution}
+By fitting a sample of extremes to the GEV distribution we can obtain the parameters that best explains the probability distribution of those extremes. We can estimate how often the extreme quantiles occur with a certain return level from the fitted distribution. One example is how large a precipitation event can be expected to be with a return period of 100 years. This values is expected to be equalled or exceeded on average once during this return period \cite{gmao}.  
+
+  
+
+\subsubsection{Issues with time series length}
+
+As with any other extreme value problem, the data series length have a major impact on the resulting statistics. The problem arises when a time series of a given length is used to infer statistics for return periods far longer than the time series itself. Given a time series of ten years, it is unlikely that a maximum value for a return period of 100 years is captured in that time series. The issue of what return periods could be represented by your data series depends a lot on what type of phenomena you are describing. In this case we are concerned with precipitation, and there are some limits to how large and rare an event could be. A time series of 10-15 years could probably represent a return period of 20-40, while a time series of 100 years could probably represent a return period of 500 years or more. 
+
+Anther issue arising when using short time series in this analysis is the possibility of getting decreasing IDF-values for increasing duration. Each duration is fitted individually. Since the resulting IDF-curve is an fit to the available years, some large or low values in a short time series will have a greater impact on the curve than the same values in a longer time series. This means that some large return values for a given duration may affect the curve more than normal return values for another longer duration. Thus, as a result of using a short time series, it is possible to experience decreasing return values for increasing duration in some cases. That being said, this is a purely statistical phenomena. The true maxima of a precipitation event will always increase with duration.    
+
+
+\subsubsection{Possible roadblock in extreme value theory}
+To perform extreme values statistics ideally you would benefit from having a long time series. The longer the time series, the higher probability that an extreme event for a given return period would have happened. Using a time series of 10-20 years has a low probability of containing a 1-in-200 year event. Where this given time series data of 400 years, the probability of it containing the 1-in-200 year event would drastically increase. Since most of the data provided are on length 15-35 years it is highly questionable if they can at all represent return periods of longer than 20-30 years. 
+
+
+\subsection{note}
+Traditionally IDF-values are calculated based on measured data from available stations. Moving towards IDF-curves based on modelled data it is necessary to investigate whether the modelled data captures the precipitation extremes at the given locations. The IDF-analysis will be of little interest if the analyses it self does not reflect true nature as captured by the stations. However, should the modelled data fail to capture the extremes it is an interesting study to find out why this might be the case.   
+
+\subsection{How is the model built}
+
+\section{Data}
+Present data here.
+
+
+
+\subsection{Area}
+
+
+%\begin{figure}[h]
+%	\centering 
+%	\includegraphics[width=0.5\textwidth]{figures/precip}
+%	\caption{Temperature (red) and precipitationv(blak) from forcing data.}
+%	\label{fig:forcing}
+%\end{figure}
+
+
+
+\section{Results}
+
+\subsection{Preliminary findings}
+
+To find the best model-fit to the station data for the historical period a 9-point grid around the grid closest to the station is used. The maximum precipitation value for each time step is chosen out of the 9 grid points. This is done to minimize the risk of missing an modelled event next to the station grid-point. An event modelled at a certain grid-point might as well happen at the grid-point next to it. To evaluate if this grid selection is better than choosing the grid-point closest to the stations the absolute average difference between the station values and the model values for all durations is calculated for both the 1 grid-procedure and the 9-grid-procedure. If the difference is 0 it means the modelled values are equal to the station-values.  
+
+\begin{table}
+\begin{tabular}{ c c c c }
+Duration & 1grid & 9grid & diff 1g-9g \\
+2 & 2.93 & 8.22 & -5.30 \\
+5 & 5.62 & 8.54 & -2.92 \\
+10 & 7.86 & 8.93 & -1.07 \\
+20 & 10.23 & 9.66 & 0.57 \\
+25 & 11.04 & 9.96 & 1.08 \\
+50 & 13.71 & 11.19 & 2.52 \\
+100 & 16.68 & 12.73 & 3.95 \\
+200 & 20.02 & 14.58 & 5.44
+\end{tabular}
+\caption{Grid selection. Positive difference: 9grid is better. Negative: 1grid is better}
+\label{grid}
+\end{table}
+
+As displayed is Table \ref{grid} the 9grid-selection outperforms the regular 1grid-selection on the larger return periods, while it is the opposite for smaller return periods.
+\textbf{Whys is this the case?}
+
+\subsection{Surrounding grid points Blindern station}
+
+It turned out that the "1grid" approach underestimated the returnvalues, while the "9grid" approach overestimated them. I have calculated the mean difference between the station Blindern and the individual gridpoints surrounding the station to check if any of the gridpoints have particular large impact on the maximum value chosen per time step in the "9g" analysis. The gridpoint to the south and south-west where further away from the station than the other directions by a huge margin. For some return periods the difference where more than twice as large as the smallest differnece for that return period. These directions may affect the overall "9grid" method too much.   
+
+In the "retlev" values in "IDF ECE Blindern 9grid.csv" is smaller for almost all directions and return periods. This is a mismatch with the resulting figures from the 9grid selection method. For all return periods in these figure the Blindrn return values are alot higher for the modeled data over the station data. So why are all return values from the grid points around blindern lower than the station? something is incorrect.
+
+The individual 9g grid points have very lov mean return values for all return periods compared to the first 9g method. Should be the same. 
+
+
+\section{Discussion}
+
+
+%\twocolumn
+%[
+%\begin{@twocolumnfalse}
+
+
+\medskip
+
+\begin{thebibliography}{9}
+
+
+\bibitem{dyrrdal_grid}
+Dyrrdal V. Anita, Skaugen Thomas, Stordal Frode, Førland J. Eirik \\
+\textit{Estimating areal precipitation in Norway from a gridded dataset}\\
+\url{https://doi.org/10.1080/02626667.2014.947289} \\
+Hydrological Science Journal, 2015.\\
+
+\bibitem{dyrrdal_bay}
+Dyrrdal V. Anita, Lenkoski Alex, Thorarinsdottir L. Thordis, Stordal Frode
+\textit{Bayesian hierarchical modeling of extreme hourly precipitation in Norway}
+Published: 2014
+
+\bibitem{gmao}
+URL: \url{kilde https://gmao.gsfc.nasa.gov/research/subseasonal/atlas/GEV-RV-html/GEV-RV-description.html}
+
+\bibitem{labus}
+Labus, M., Labus, K. Thermal conductivity and diffusivity of fine-grained sedimentary rocks. J Therm Anal Calorim 132, 1669–1676 (2018). \\
+URL: \url{https://doi.org/10.1007/s10973-018-7090-5}
+
+\bibitem{muller}
+MÜller et al. 2017\\
+\textit{AROME-MetCoOp: A Nordic Convective-Scale Operational
+Weather Prediction Model}\\
+URL: \url{https://doi.org/10.1175/WAF-D-16-0099.1}
+
+\bibitem{finse}
+Webpage of Finse Alpine Research Ceenter\\
+URL: \url{https://www.finse.uio.no/about/location/}\\
+Visited 20th of April 2020
+
+\bibitem{seklima}
+Historical precipitation records from Finse.\\
+URL: \url{https://seklima.met.no/observations/}
+
+\bibitem{yr}
+Webpage of Nowegian forcasting service YR for historical data for Finse.\\
+URL: \url{https://www.yr.no/nb/historikk/graf/1-111123/Norge/Vestland/Ulvik/Finse}
+
+\bibitem{hosk}
+Hosking, J.R.; Wallis, J.R. Parameter and quantile estimation for the generalized Pareto distribution.
+Technometrics 1987, 29, 339–349.
+https://www.tandfonline.com/doi/pdf/10.1080/00401706.1987.10488243?needAccess=true
+
+\bibitem{olsson}
+Olsson, J.; Södling, J.; Berg, P.;Wern, L.; Eronn, A. Short-duration rainfall extremes in Sweden: A regional
+analysis. Hydrol. Res. 2019, 50, 945–960.
+https://iwaponline.com/hr/article/50/3/945/65595/Short-duration-rainfall-extremes-in-Sweden-a
+
+\bibitem{huard}
+Huard, D.; Mailhot, A.; Duchesne, S. Bayesian estimation of intensity–duration–frequency curves and of
+the return period associated to a given rainfall event. Stoch. Environ. Res. Risk Assess. 2010, 24, 337–347.
+https://link.springer.com/article/10.1007%2Fs00477-009-0323-1
+
+\bibitem{mohymont}
+B. Mohymont, G. R. Demarée, D. N. Faka. Establishment of IDF-curves for precipitation in the
+tropical area of Central Africa - comparison of techniques and results. Natural Hazards and Earth
+System Science, Copernicus Publications on behalf of the European Geosciences Union, 2004, 4 (3),
+pp.375-387. ffhal-00299129f
+https://hal.archives-ouvertes.fr/hal-00299129/document
+
+\bibitem{fevd}
+URL: https://www.rdocumentation.org/packages/extRemes/versions/2.0-12/topics/fevd
+RDocumentation of function: fevd : from the extRemes package in R.
+
+\bibitem{nhat}
+(Nhat et al., 2006)
+Establishment of Intensity-Duration-Frequency Curves
+for Precipitation in the Monsoon Area of Vietnam
+Found in local forlder IDF
+
+\bibitem{R}
+R Core Team (2013). R: A language and environment for statistical
+computing. R Foundation for Statistical Computing, Vienna, Austria.
+URL http://www.R-project.org/.
+
+\bibitem{Rextremes}
+https://cran.r-project.org/web/packages/extRemes/extRemes.pdf
+
+
+\end{thebibliography} 
+
+
+%\end{@twocolumnfalse}
+\
+%]
+
+\end{document}

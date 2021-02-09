@@ -1,0 +1,18 @@
+\section{Issues}
+\label{sec:issues}
+
+\subsubsection{Issues with time series length}
+
+As with any other extreme value problem, the data series length have a major impact on the resulting statistics. The problem arises when a time series of a given length is used to infer statistics for return periods far longer than the time series itself. Given a time series of ten years, it is unlikely that a maximum value for a return period of 100 years is captured in that time series. The issue of what return periods could be represented by your data series depends a lot on what type of phenomena you are describing. In this case we are concerned with precipitation, and there are some limits to how large and rare an event could be. A time series of 10-15 years could probably represent a return period of 20-40, while a time series of 100 years could probably represent a return period of 500 years or more. 
+
+Anther issue arising when using short time series in this analysis is the possibility of getting decreasing IDF-values for increasing duration. Each duration is fitted individually. Since the resulting IDF-curve is an fit to the available years, some large or low values in a short time series will have a greater impact on the curve than the same values in a longer time series. This means that some large return values for a given duration may affect the curve more than normal return values for another longer duration. Thus, as a result of using a short time series, it is possible to experience decreasing return values for increasing duration in some cases. That being said, this is a purely statistical phenomena. The true maxima of a precipitation event will always increase with duration.    
+
+
+\subsubsection{Possible roadblock in extreme value theory}
+To perform extreme values statistics ideally you would benefit from having a long time series. The longer the time series, the higher probability that an extreme event for a given return period would have happened. Using a time series of 10-20 years has a low probability of containing a 1-in-200 year event. Where this given time series data of 400 years, the probability of it containing the 1-in-200 year event would drastically increase. Since most of the data provided are on length 15-35 years it is highly questionable if they can at all represent return periods of longer than 20-30 years. 
+
+
+\subsection{note}
+Traditionally IDF-values are calculated based on measured data from available stations. Moving towards IDF-curves based on modelled data it is necessary to investigate whether the modelled data captures the precipitation extremes at the given locations. The IDF-analysis will be of little interest if the analyses it self does not reflect true nature as captured by the stations. However, should the modelled data fail to capture the extremes it is an interesting study to find out why this might be the case.   
+
+\subsection{How is the model built}

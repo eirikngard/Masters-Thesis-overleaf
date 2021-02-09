@@ -1,0 +1,75 @@
+\documentclass[a4paper, 11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx} %for figures and pictures
+\usepackage[noend]{algorithm2e}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{epsfig,floatflt}
+\usepackage{physics}
+\usepackage[english]{babel}
+\usepackage{booktabs}
+\usepackage[round]{natbib}
+%\usepackage{cite}
+\usepackage[format=plain,
+font=it]{caption}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{color}
+\definecolor{darkred}{rgb}{0.5,0,0}
+\definecolor{darkgreen}{rgb}{0,0.5,0}
+\definecolor{darkblue}{rgb}{0,0,0.5}
+
+\usepackage{graphicx}
+\usepackage{lingmacros}
+\usepackage{blindtext}
+\usepackage{tree-dvips}
+\usepackage{amsmath}
+\usepackage{multicol}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage[table]{xcolor}
+\usepackage{textcomp}
+%\usepackage{floatrow}
+%\usepackage{romannum} %for roman numbers
+\graphicspath{ {./Latex/} }
+
+
+\hypersetup{ colorlinks,
+	linkcolor=darkblue,
+	filecolor=darkgreen,
+	urlcolor=darkred,
+	citecolor=darkblue }
+
+\graphicspath{{../figures/}}
+\DeclareGraphicsExtensions{.pdf}
+
+\begin{document}
+
+\input{frontpage}
+
+\tableofcontents
+
+\input{abstract}
+
+\input{introduction}
+
+\input{bakground}
+
+\input{theory}
+
+\input{issues}
+
+\input{results}
+
+\input{bib}
+
+\bibliographystyle{plainnat}
+
+%\bibliography{bib}
+
+\include{appendix}
+  
+\end{document}

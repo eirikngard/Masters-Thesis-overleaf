@@ -1,0 +1,88 @@
+\section{Theory and method}
+\label{sec:theory}
+
+\section{Method}
+\subsection{You should clarify these things:}
+
+\begin{itemize}
+\item The GEV framework 
+\item The Bayesian framework, highlight probabilistic aspect and advantages (and disadvantages)
+\item Some description/justification of the chosen return levels and duration
+\item Describe the station data from MET. Describe the modelled data from AROME. 
+\item If there are any other aspects of the code you should include this as well.
+\item maybe a short paragraph on the choice/restriction on the shape parameter. 
+\item Later: describe how the performance of the historic modelled vs. measurement-based curves are evaluated. 
+\end{itemize}
+
+Clarify with Malte how to refer to Julia and Anitaz study. My study is after all (to a degree) based on their method, and this should be highlighted somewhere and probably in a certain way?
+
+\subsection{The General Idea of IDF values} 
+
+
+Intensity-Duration-Frequency (IDF) curves comprise an estimate of rainfall intensities of different durations and recurrence intervals. Durations commonly range from minutes to days and recurrence intervals often range from a year to a couple hundreds of years. \textbf{insert example of IDF values for a given duration and return period as illustration}. The curves can either be calculated for a large region or for a single point. Depending on the topography and governing precipitation processes and patterns the IDF values may differ quite a lot between locations only kilometres apart. \textit{Duration} refers to the length of the precipitation event. Maximum rainfall intensity for each duration can be related to corresponding\textit{recurrence intervals} or \textit{return periods}. The return period is defined as $T = 1/P$ where $P$ is the annual exceedance probability. $P = 0.1$  (10\%)  implies that a precipitation event of a certain magnitude has a return period $T$ of ten years. It can also be interpreted as a 10\% chance of exceeding the given magnitude in any year. \textbf{this is just my understanding.find a source on this?}. (https://web.arch.virginia.edu/struct/arch721/content/lectures/lec-06/page-2.html) Thus, the higher return period $T$ of an event, the less likely it is that this event will occur during a given year. \textbf{possibly elaborate on this from the previous link}. The corresponding cumulative Distribution Frequency (CDF) $F$ will be: $F = 1-P = 1-1/T$. Once $F$ is known the maximum rainfall intensity for each duration and return period is determined through the chosen PDF (e.g GEV, Pearson type \textbf{3 in roman} distributions, Gumbel) (Nhat et al., 2006). IDF curves can then be presented as precipitation from one duration at all return periods and as precipitation at one return period on all durations. 
+
+
+\subsection{IDF calculation packages}
+
+R software and packages on extreme value statistics has been used to perform the IDF calculations (R Core Team, 2013). R is a language and environment for statistical computing and graphics, and the R software is available as Free Software under the terms of the Free Software Foundation's GNU General Public License (https://www.r-project.org/about.html). Functionalities in the R package \textit{extRemes}, Weather and Climate Applications of Extreme Value Analysis, have been used for an extreme value analysis. The package allows for parameter-estimation on extreme-value distributions, implementation of different inference methods and more(extRemes by Gilleland, 2020). The function \textit{fevd} with arguments \textit{type=GEV} and \textit{method=Bayesian} fits the univariate general extreme value distribution to the precipitation data(RDocumentation, fevd). The type-argument states which extreme value distribution to fit to data, while the method-argument states which type of estimation method should be used. The fit is done for desired quantiles and return levels for all durations is calculated.  
+
+ 
+
+\subsection{Practices in Computation of IDF values}
+
+Short-duration precipitation statistics is often presented with Intensity-Duration-Frequency (IDF) curves. IDF curves provide information on duration and frequency of pre-defined precipitation events, and they are often used in planning and design of infrastructure and other water-managing structures. There are many ways to calculate IDF values, thus different methods are used in different countries. In Sweden two of these have been applied when Olsson et al. (2019) fitted the Generalized Extreme Values (GEV) distribution to block maxima and the Generalized Pareto distribution to Peak-Over-Threshold events (Hosking et al., 1987) to calculate regional short-duration rainfall. In Québec in Canada was a Bayesian approach with standard parameter estimation for the GEV distribution used (Huard et al., 2010). In this study the Bayesian approach was recommended for further studies as it implicitly include an estimation of the uncertainty of the IDF values. Mohymont et al. (2004) used a GEV distribution and a Gumbel distribution to establish IDF-curves for the tropical Central Africa. The most recent methodology for estimating IDF values in Norway is based on fitting a Gumbel distribution to the N-highest measurements (N being the time-series length in years). Lutz et al. (2020) explored ways to update the Norwegian IDF routine, fitting a General Extreme Value (GEV) distribution for annual maximum precipitation using a modified Maximum Likelihood estimation and a Bayesian inference. Here the Bayesian method performed best in two goodness-of-fit tests and thus was recommended for IDF estimation for Oslo in Norway.
+
+One profound challenge in estimating IDF values for extreme precipitation is the availability of data. Short data series yields very large uncertainties in precipitation magnitude for large return periods. To properly analyse IDF curves and the potential impacts of the events they describe it is crucial to capture and understand the uncertainties of the curves. As recommended in Huard et al. (2010) and practised in Lutz et al. (2020) fitting an GEV distribution using a Bayesian method will be applied in this study for best estimates of the IDF values and well-described uncertainty.  
+ 
+
+\subsection{GEV distribution and extreme value statistics}
+
+Extreme value theory provides the statistical framework needed to infer probability of very rare or extreme events. The Generalized Extreme Value distribution describes a family of three possible types of distributions of block maxima of a given variable, allowing a continuous range of possible distribution shapes. These distributions are called Type 1, Type 2 or Type 3, also known as Gumbel, Fréchet and Weibull respectively. The block maxima distribution converges to a GEV, G(x), distribution once the record length approaches infinity. Being a three-parameter distribution, G(x) can be written on the form:
+
+\begin{equation}
+	G(x) = exp\bigg\{-\left[1+\zeta(\frac{x-\mu}{\sigma})\right]^\frac{-1}{\zeta}\bigg\}
+	\label{eq:gev}
+\end{equation}
+
+for 
+\begin{equation}
+	1+\zeta(\frac{x-\mu}{\sigma} \textgreater 0
+\end{equation}
+
+where $\mu$ is location, $\sigma$ is scale and $\zeta$ is shape (Dyrrdal et al., 2015). Since the extremes are determined from the tail of the distribution, they are heavily affected by the choice of $\zeta$. $\zeta$ determines whether the distribution converges towards Gumbel ($\zeta$=0) with a light upper tail, Fréchet ($\zeta$\textgreater0) with a heavy upper tail or Weibull ($\zeta$\textless0) which is bounded from above (Dyrrdal et al., 2014). As the shape parameter describes the tail of the distribution it will severely affect the estimates for long return periods. The shape parameter can be both positive and negative, depending on the location of interest. Poor choice of this parameter may provide unrealistic precipitation estimates, especially on the longer return periods, thus Lutz et al. (2020) introduced a prior distribution to constrain the $\zeta$ parameter of the GEV distribution.\textbf{(or should I refer to the paper she is referring to (the original source)?.}. Maybe include some more information on on the parameters? 
+
+\subsection{Bayesian Approach}
+\subsubsection{Basics}
+In general the goal is to estimate parameters of a distribution to best fit data. Given a generic parameter $\beta$, the likelihood function is the probability density of the observed data as a function of $\beta$. $\beta$s with high likelihood correspond to models which give high probability to the observed data. Traditionally, a maximum likelihood estimation seeks to adopt the model with greatest likelihood, namely the model that assigns the highest probability to the observed data. Bayesian inference provide an alternative method to draw inference from a likelihood function (http://www.mas.ncl.ac.uk/~nlf8/shortcourse/part5.pdf many things are well formulated in this pdf, but I havent found its origin yet). 
+
+Here a Bayesian inference is used to estimate one probability distribution for the parameter set $\sigma$ containing the three GEV parameters, $\alpha = (\sigma, \zeta, \mu)$. These parameters are treated as random variables with prior distributions, distributions of the parameter prior to the inclusion of data $x = (x_1, x_2,...,x_n)$. Bayes` Theorem (need source?) states that the probability of an event is dependent on prior knowledge of conditions that are relevant to the event. The theorem states:
+
+\begin{equation}
+P(\alpha \vert x) = \frac{L(x \vert \alpha)P(\alpha)}{P(x)},
+\label{bays}
+\end{equation}
+
+where $P(\alpha \vert x)$ is the probability density function of $\alpha$ given the observations $x$. $L(x \vert \alpha)$ is the likelihood function an $P(\alpha)$ is the GEV parameters (prior probability of $\alpha$, better to use this instead of "GEV parameters"?). Since $P(x)$ is constant Equation \eqref{bays} can be written as 
+
+\begin{equation}
+P(\alpha \vert x)\propto L(x \vert \alpha)P(\alpha)
+\end{equation}  
+or
+\begin{equation}
+posterior \propto prior * likelihood
+\end{equation}
+where the $posterior$ is the distribution of $\alpha$ after the inclusion of data. As done in Lutz et al. (2020) $P(\alpha \vert x)$ is sampled using the Markov Chain Monte Carlo (MCMC) method with 50,000 iterations, where the last 3000 is used to have stability in the simulated parameters. \textbf{maybe include some background in MCMC as well?}. Furthermore, the posterior distribution allows for direct derivation of quantiles. Here the 95\% credible interval is used.  
+\subsubsection{Advantages}
+Choosing a Bayesian analysis of extremes over a more traditional likelihood approach can have various advantages. Incorporating other sources of information, like a prior distribution, to the analysis is considered a large advantage given the scarce nature of the extremes. Making good use of any knowledge on the distribution Another major advantage is that the variance of the posterior distribution can be used can be used to calculate the precision of the inference. This way the resulting IDF values can be presented with desired confidence levels.   
+
+%http://www.mas.ncl.ac.uk/~nlf8/shortcourse/part5.pdf
+
+%https://www.researchgate.net/publication/226610355_A_full_Bayesian_approach_to_generalized_maximum_likelihood_estimation_of_generalized_extreme_value_distribution
+
+
+\subsection{Application of GEV distribution}
+By fitting a sample of extremes to the GEV distribution we can obtain the parameters that best explains the probability distribution of those extremes. We can estimate how often the extreme quantiles occur with a certain return level from the fitted distribution. One example is how large a precipitation event can be expected to be with a return period of 100 years. This values is expected to be equalled or exceeded on average once during this return period \cite{gmao}.
+
+\subsection{Weakness of GEV statistics}
+
+here the length of the time series mattters, the topography of the selected area, the spred of the data it self. Many thing will affect the resultingIDF values. 

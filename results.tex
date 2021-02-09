@@ -1,0 +1,43 @@
+\section{Results}
+\label{sec:results}
+
+\subsection{Preliminary findings}
+
+To find the best model-fit to the station data for the historical period a 9-point grid around the grid closest to the station is used. The maximum precipitation value for each time step is chosen out of the 9 grid points. This is done to minimize the risk of missing an modelled event next to the station grid-point. An event modelled at a certain grid-point might as well happen at the grid-point next to it. To evaluate if this grid selection is better than choosing the grid-point closest to the stations the absolute average difference between the station values and the model values for all durations is calculated for both the 1 grid-procedure and the 9-grid-procedure. If the difference is 0 it means the modelled values are equal to the station-values.  
+
+\begin{table}
+\begin{tabular}{ c c c c }
+
+Duration & 1grid & 9grid & diff 1g-9g \\
+2 & 2.93 & 8.22 & -5.30 \\
+5 & 5.62 & 8.54 & -2.92 \\
+10 & 7.86 & 8.93 & -1.07 \\
+20 & 10.23 & 9.66 & 0.57 \\
+25 & 11.04 & 9.96 & 1.08 \\
+50 & 13.71 & 11.19 & 2.52 \\
+100 & 16.68 & 12.73 & 3.95 \\
+200 & 20.02 & 14.58 & 5.44
+\end{tabular}
+    \label{grid}
+\end{tabular}
+\caption{Grid selection. Positive difference: 9grid is better. Negative: 1grid is better}
+\end{table}
+
+As displayed is Table \ref{grid} the 9grid-selection outperforms the regular 1grid-selection on the larger return periods, while it is the opposite for smaller return periods.
+\textbf{Whys is this the case?}
+
+\subsection{Surrounding grid points Blindern station}
+
+It turned out that the "1grid" approach underestimated the returnvalues, while the "9grid" approach overestimated them. I have calculated the mean difference between the station Blindern and the individual gridpoints surrounding the station to check if any of the gridpoints have particular large impact on the maximum value chosen per time step in the "9g" analysis. The gridpoint to the south and south-west where further away from the station than the other directions by a huge margin. For some return periods the difference where more than twice as large as the smallest differnece for that return period. These directions may affect the overall "9grid" method too much.   
+
+In the "retlev" values in "IDF ECE Blindern 9grid.csv" is smaller for almost all directions and return periods. This is a mismatch with the resulting figures from the 9grid selection method. For all return periods in these figure the Blindrn return values are alot higher for the modeled data over the station data. So why are all return values from the grid points around blindern lower than the station? something is incorrect.
+
+The individual 9g grid points have very lov mean return values for all return periods compared to the first 9g method. Should be the same. 
+
+\subsection{9grid mean vs max method}
+Previously we took the maximum value out of the nine grid points closest to the station gridpoint each time-step, then calculated the annual maxima for each duration out of the one dim data-series. Now we find the maximum value for each gridpoint.
+This leaves us with a 3x3 matrx with maximum values per year.
+Then either maximum or mean values of the 9 is calculated per 
+year per duration. The resulting "mean" method provides very similar results to the 1-grid method. The only noticeable difference in the "mean" method is the smoothening of the abrupt increase in idf values for durations up to 6 hour found in the 1-grid method for large return levels. Otherwise bothe the mean return value and the percentiels are very similar for all durations, all stations and all return periods.   
+
+Even though we (I and Malte) agreed on not using the distance between the curves as any measure, it must be said that the "ax9" method now gives far better overall results compared to the stat
