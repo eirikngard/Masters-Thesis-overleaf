@@ -71,7 +71,9 @@ or
 \begin{equation}
 posterior \propto prior * likelihood
 \end{equation}
-where the $posterior$ is the distribution of $\alpha$ after the inclusion of data. As done in Lutz et al. (2020) $P(\alpha \vert x)$ is sampled using the Markov Chain Monte Carlo (MCMC) method with 50,000 iterations, where the last 3000 is used to have stability in the simulated parameters. \textbf{maybe include some background in MCMC as well?}. Furthermore, the posterior distribution allows for direct derivation of quantiles. Here the 95\% credible interval is used.  
+where the $posterior$ is the distribution of $\alpha$ after the inclusion of data. As done in Lutz et al. (2020) $P(\alpha \vert x)$ is sampled using the Markov Chain Monte Carlo (MCMC) method with 50,000 iterations, where the last 3000 is used to have stability in the simulated parameters. \textbf{maybe include some background in MCMC as well?}. Furthermore, the posterior distribution allows for direct derivation of quantiles. Here the 95\% credible interval is used. 
+
+
 \subsubsection{Advantages}
 Choosing a Bayesian analysis of extremes over a more traditional likelihood approach can have various advantages. Incorporating other sources of information, like a prior distribution, to the analysis is considered a large advantage given the scarce nature of the extremes. Making good use of any knowledge on the distribution Another major advantage is that the variance of the posterior distribution can be used can be used to calculate the precision of the inference. This way the resulting IDF values can be presented with desired confidence levels.   
 
