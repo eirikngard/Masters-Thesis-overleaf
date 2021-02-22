@@ -37,6 +37,8 @@ The individual 9g grid points have very lov mean return values for all return pe
 \subsection{9grid mean vs max method}
 Previously the selection method was based on choosing the maximum value per time-step out of the nine gridpoints, forming a one-dimensional timeseries. Then the annual maxima was extracted for each duration. This approach was designed to maximize the chance of capturing an extreme event in close proximity to the station. As discussed above (?) this method appears to "optimize" the modeled precipitation and hence overestimate the return values. Retunvalues for all stations and almost all durations are within the 95 percentile of the station-based retunvalues for the larger returnperiods. This is not surprising given the enormous confidence interval in the largest retunperiods at up to around 200 mmm for the largest durations for some stations. For the smaller returnperiods like 2 and 5 years the method is outside the 95 percentile of the station-based returnvalues. Here the confidence interval is of coarse noticeably smaller. \textbf{make sure its even relevant to comapre this against the confidence interval to the stat based values. Justify it somewhere}.  
 
+make a comment on how the 9grid first method follows the large (100 and 200) returnperiods station idf curves very well for the stations with large confidence intervals. Especially Bygdøy and Besserud and partially Haugenstua (for large durations on Haugenstua).
+
 The two "new"/other 9-grid based selection methods are built differently. Now the annual maximum value for each of the nine  gridpoints for each duration is extracted directly and put into a 3x3 matrix. Either maximum ($MAX$) or mean ($MEAN$)values of the nine is then calculated per duration to give a one-dimensional data series. The $MAX$ alternative is designed to be a less aggressive optimisation of the annual maximum values around the station compared to the other nine-grid maximum selection method \textbf{make a name for this one as well!}. The  $MAX$ maximization method is possibly closer to the real world compared to the \textbf{$XXX$} method. Extracting maximum value for each timestep out of the nine gridpoints might be artificial in one way, since the annual maxima for any duration may be composed from different locations. The $MAX$ method is on the other hand more realistic in the sens that the annul maxima for certain year always origins from one gridpoint. 
 
 \textbf{Here (or later) you can discuss what the station is actually representing. It might be that the $XXX$ method is very representative for the area in general. It would be interesting to check how the station-based IDF curves compares to observations. If these curves are underestimating the observations $XXX$ might be very well suited to represent the overall conditions fr extreme precipitation in the area. Also, describing the methods for extraction should be in the methods section, not here in results}
@@ -51,8 +53,27 @@ The resulting $MEAN$ method provides very similar returnvalues to the $1GRID$ me
     \label{fig:arome_domain}
 \end{figure}
 
-For most stations the $MAX$ method 
+On average for all stations the $MAX$ method overestimate the IDF-values slightly for 2 year returnperiod, and slightly underestimate for all returnperiods larger than 5 years. In table \ref{dist_eval} the realtionship between the respective model and the station-based returnvalues are listed in station- and duration-averaged percentage. For station Haugenstua, Ljabruvegen, Hovin and Besserud it is close to identical to the $STAT$ method for all durations on the 2 year returnperiod. For the larger returnperiods it is the overall method closest to the $STAT$ method, esepecially for the stations with narrow confidence intervals. Providing higher estimates of the returnvalues than the $MEAN$ and the $1GRID$ method but smaller estimates compared to the $9GRID$ the $MAX$ method serves as a middle ground which according to table \ref{dist_eval} is more consistent with the station-based estimates on average for all the Oslo stations. Only for a 200 year returnperiod the station average for the $9GRID$ method is more consistent.        
 
+\begin{table}
+\centering
+\begin{tabular}{ c c c c c}
+
+Duration & 1grid & 9grid & mean9 & max9 \\
+2 & 88.78 & 134.92 & 89.30 & 107.89\\
+5 & 82.27 & 125.45 & 79.57 & 100.00\\
+10 & 79.29 & 121.10 & 75.09 & 96.37\\
+20 & 77.02 & 117.78 & 71.65 & 93.60\\
+25 & 76.39 & 116.86 & 70.70 & 92.84\\
+50 & 74.66 & 114.33 & 68.07 & 90.73\\
+100 & 73.20 & 112.20 & 65.83 & 88.95\\
+200 & 71.93 & 110.36 & 63.89 & 87.42
+\end{tabular}
+\caption{Station- and duration-average returnvalues for each returnperiod in percentage of the station-based station- and duration-average returnvalues. Each column is one method. Values >100 means averge overestimation copared to to the station-based values and values <100 mean underestimation.}
+\label{dist_eval}
+\end{table}
 
 
 Even though we (I and Malte) agreed on not using the distance between the curves as any measure, it must be said that the "ax9" method now gives far better overall results compared to the stat.
+
+\subsection{some new section}

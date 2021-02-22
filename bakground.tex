@@ -3,14 +3,38 @@
 
 \subsection{Meteorological Background}
 
+You need to find some sources indicating weather convective or frontal precipitation is the main source of extreme precipitation on the different durations. 
+
 Explain convention and what generally causes the most extreme precipitation on the different durations. Present some typical precipitation values at the selected durations values?
 
 Maybe the GEO4902 work can be included here in the background? Or it can be included as a separate section to highlight problems with forecasting extreme events? This can also be used to justify why we have to choose the maximum values from multiple grid.boxes around the respective station.   
 one paper under AROME folder also highlights what effect horizontal resolution have on extreme precipitation. 
 
+\subsubsection{Precipitation}
+precipiation formation processes: collision and coalecence, ice crystal, cloud seeding. Convective, frontal, orographic. Stbility. Summer and winter. 
+Precipitation is often categorized by the physical process creating it and may vary on both spatial and temporal scale. One can often relate the precipitation process to the relationship between the vertical and the horizontal extent, where the vertical velocity can be related to these two. The temporal scale varies from minutes to days, and the the spatial scale varies from hundreds of meters to hundreds of kilometers. Large-scale precipitation events are typically on a synoptic scale, characterized by a horizontal dimension many times greater than the vertical extent. Hence, the vertical velocity is often small in theses systems. Smaller-scale systems have shorter horizontal extent and often vertical extent equal to or almost equal to the vertical. In these systems the vertical speed is often large compared to large-scale systems. Normally precipitation is separated into three main categories; stratiform, orographic and convective precipitation.
+
+\subsubsubsection{Large-scale}
+some on this?
+\subsubsubsection{orographic}
+some on this?
+\subsubsubsection{Convective Precipitation}
+Convective precipitation originates from clouds driven by convection. These clouds are cumulus-type clouds forming in an unstable atmosphere as warm air rises due to buoyancy forces. The vertical extent is determined by the depth of the unstable layer and its degree of instability. The cumulus clouds are distinct in their shape with a flat base and a "cotton-like" appearance. They can also be observed with narrow, towering plumes on top. Horizontally the extent is typically around 3 km, while the initial thermal in which condensation first occurs can be only tens of meters. Typically the lifetime of cumulus clouds are from a few minutes to hours. If the persist for many hours they also tend to grow substantially in size. The horizontal and vertical extent is comparable, but a cumulus cloud can under right conditions (\textbf{do i need to elaborate further on this?}) develop to a cumulonimbus cloud reaching all the way to the top of the stratosphere \cite{rogers}. Once the recognizable anvil-shaped cumulonimbus is formed it is very likely to produce rain, thunder and lightning. Although cumulus clouds are commonly associated with nice weather, as the convection it self typically occurs due to the sun heating the ground during daytime in summer creating buoyant air, once the rising parcel of air becomes saturated condensation will occur and precipitation will form. As the warm and moist air rises it cools to the point where the air is saturated on water vapour. Once condensation begins latent heat is released and precipitation forms.
+
+Given the short temporal scale and the small horizontal scale the convective precipitation, also known as showers, are very local phenomena 
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.2]{figures/cumulus_bilde.jpg}
+    \caption{Formation of convective Cumulus clouds over land in Femundsmarka, Norway.
+    \cite{cumulus}}
+    \label{fig:cumulus}
+\end{figure}
+
+\subsubsubsection{Formation perhaps?}
+
 \subsection{Area}
 
-The area investigated in this thesis is Oslo, the capitol of Norway. This location is selected for a number of reasons. Firstly there are multiple stations in the area witch have long, high quality data series of precipitation. This is essential because it allows for comparison to the modeled IDF values. When analysing IDF curves short time series is a problem in it self, therefore having multiple high quality data series is very valuable to the analysis. Also, multiple stations covering a rather small area like in this case may highlight certain features in the IDF curves related to topography or other mechanisms influencing precipitation that would otherwise have been hidden. Secondly the Oslo area is a typical urban area, making it vulnerable to short duration extreme precipitation. Improving the knowledge on extreme precipitation events may potentially save the area and its population for large weather-related costs in the future. Another reason for selecting this area was the availability of cleaned data. Data from the selected stations had been cleaned and checked for analysis beforehand as part of the \textbf{Julia paper (how do I address this?)}. 
+The area investigated in this thesis is Oslo, the capitol of Norway. This location is selected for a number of reasons. Firstly there are multiple stations in the area witch have long, high quality data series of precipitation. This is essential because it allows for comparison to the modeled IDF values. When analysing IDF curves short time series is a problem in it self, therefore having multiple high quality data series is very valuable to the analysis. Also, multiple stations covering a rather small area like in this case may highlight certain features in the IDF curves related to topography or other mechanisms influencing precipitation that would otherwise have been hidden. Secondly the Oslo area is a typical urban area, making it vulnerable to short duration extreme precipitation. Improving the knowledge on extreme precipitation events may potentially save the area and its population for large weather-related costs in the future. Another reason for selecting this area was the availability of processed data. Data from the selected stations had been cleaned and checked for analysis beforehand as part of the \textbf{Julia paper (how do I address this?)}. 
 
 \subsection{Data}
 \subsubsection{Measurements}
