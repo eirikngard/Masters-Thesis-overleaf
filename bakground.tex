@@ -23,7 +23,7 @@ Convective precipitation originates from clouds driven by convection. These clou
 
 maybe include some schematics on buoyancy and instability? also the dry and wet adiabat and stability criteria? 
 
-\begin{figure}
+\begin{figure}[hbt!]
     \centering
     \includegraphics[scale=0.4]{figures/convection-rain.png}
     \caption{Schematic Convection. From: https://anessoriginal.wordpress.com/elective-geog/variable-weather-and-changing-climate-a-continuing-challenge/key-question-1-wc/1-convectional-rain/.
@@ -34,7 +34,7 @@ maybe include some schematics on buoyancy and instability? also the dry and wet 
 
 Given the short temporal scale and the small horizontal scale the convective precipitation, also known as showers, are rather local phenomena you can watch form and propagate past your neighbourhood. Events at such small scales proves hard to capture for climate models, and even operational forecasting are far from spot on with predicting the where and the when of these events. 
 
-\begin{figure}
+\begin{figure}[hbt!]
     \centering
     \includegraphics[scale=0.2]{figures/cumulus_bilde.jpg}
     \caption{Formation of convective Cumulus clouds over land in Femundsmarka, Norway.
@@ -42,7 +42,102 @@ Given the short temporal scale and the small horizontal scale the convective pre
     \label{fig:cumulus}
 \end{figure}
 
-\subsubsubsection{Formation perhaps?}
+\subsubsubsection{Convection}
+
+\subsubsubsection{Dry convection}
+
+Convection is often treated as an adiabatic process. This is a thermodynamic process in which no heat or mass is transferred between the system in question and the surroundings. However, energy can be transferred from the system to the surroundings through work. Being a compressible fluid the density of the atmosphere is a function of both temperature and pressure; $\rho = \rho(p,T)$. Furthermore it obeys the perfect gas law, and $\rho = p/RT$. As a parcel rises from an initial height $z_1$ it moves into an environment of lower pressure at height $z_2$, adjusting to this pressure by expanding along the way. This expansion exerts work on the environment, making the parcel cool. To determine the buoyancy of the parcel at $z_2$ one must know the evolution of the parcel temperature between $z_1$ and $z_2$.
+
+Considering a parcel of ideal gas of unit mass with a volume V. Using the first law of thermodynamics,
+
+\begin{equation}
+    \delta Q = dU + dW
+    \label{1law}
+\end{equation}
+where $\delta Q$ is an amount of heat exchange with the surroundings, $dU$ is the change in energy and $dW$ is the change in external work. Eq. \eqref{1law} can be written as 
+
+\begin{equation}
+    \delta Q = c_vdT + pdV
+    \label{1law2}
+\end{equation}
+
+where $c_cdT$ is the change in internal energy due to change in temperature $dT$ and $pdV$ is the work done by the parcel on its surroundings by expanding an amount $dV$. $c_v$ is specific heat at constant volume. Rewriting Eq. \eqref{1law2} with repeated use of $p=\rho RT$ yields 
+
+\begin{equation}
+    \delta Q = c_pdT - \frac{dp}{\rho}
+    \label{thermo1}
+\end{equation}
+
+where $c_p = R + c_v$ is specific heat at constant pressure. 
+
+For adiabatic processes $\delta Q = 0$, thus
+
+\begin{equation}
+    c_pdT = \frac{dp}{\rho}
+    \label{dq0}
+\end{equation}
+
+The hydrostatic balance,
+
+\begin{equation}
+    \frac{\partial p}{\partial z} +g\rho = 0
+\end{equation}
+
+describes how pressure decreases with height in proportion with the weight of the overlying atmosphere. Using the hydrostatic equation and assuming $p \simeq p_{e}$, for a small upward displacement in Eq.\eqref{dq0} the parcel`s temperature under an adiabatic displacement will change according to
+
+\begin{equation}
+    \frac{dT}{dz} = -\frac{g}{c_p} = - \Gamma_d
+    \label{drylaps}
+\end{equation}
+
+where $\Gamma_d$ is called the dry adiabatic lapse rate and the notation $e = environment$. Now if the parcel is displaced from $z_1$ to $z_2$ it will experience a restoring force depending on the density of the environment. At $z_2$ the environment has temperature $T_2 \simeq T_1 + (dT/dz)_e \delta z$ where $(dT/dz)_e = \Gamma_e$ is the environmental lapsrate, pressure $p_2$ and density $\rho_2 = p_2/RT_2$. The parcel has temperature $T_P = T_1 - \Gamma_d\delta z$, pressure $p_2$ and density $\rho_P = p_2/RT_P$. Depending on whether $T_P$ is greater than, equal to or less than $T_2$ the parcel will be positively, neutrally or negatively buoyant. Thus, criterion for stability can be written
+
+\begin{equation}
+    \begin{rcases}
+      \text{Unstable}\\
+      \text{Neutral}\\
+      \text{Stable}
+    \end{rcases}   
+    \text{if} \left(\frac{dT}{dZ}\right)_e = \Gamma_e 
+    \begin{cases}
+      < - \Gamma_d \\
+      = - \Gamma_d \\
+      > - \Gamma_d
+    \end{cases}
+    \label{stabcond}
+\end{equation}
+
+From Eq. \eqref{stabcond} a compressible atmosphere is unstable if temperature decreases with height faster than the adiabatic laps rate. Given $c_p = 1005 Jkg^{-1}K^{-1}$ in Eq. \eqref{drylaps} $\Gamma_d \simeq 10 K km^{-1}$. Typically the dry laps rate decreases from around 6,5 $K km^{-1}$ at low latitudes to around 4.5 $K km^{-1}$ at polar latitudes \ref{lapsrate}. Thus, no dry convection is expected and the atmosphere can generally be considered stable to dry convection.     
+
+\textbf{must describe the unknowns where they are first mentioned}
+
+\subsubsubsection{Moist convection}
+
+Since the atmosphere is normally stable in the absence of condensation most convection in the atmosphere is moist convection. If a moist air parcel is lifted it cools adiabatically, and if it is cooled enough to saturate some water vapor condenses to form a cloud. Once saturated to parcel releases latent heat, adding buoyancy to the parcel and thus increasing the instability.
+Moisture of air is often expressed as specific humidity 
+
+\begin{equation}
+    q = \frac{\rho_v}{\rho}
+\end{equation}
+
+This is the ratio of mas of water to the mass of air er unit volume. Q is conserved given no mixing. The saturation-specific humidity, $q_*$, is the specific humidity at which saturation occurs. $q_*$ can be written:
+
+\begin{equation}
+    q_* = \frac{\frac{e_s}{R_v T}}{\frac{p}{RT}} = \left(\frac{R}{R_v}\right)\frac{e_s}{p}
+\end{equation}
+
+Implicitly this means that $q_*$ is a function of both temperature and pressure. Lifting a parcel would decrease the pressure and cool the parcel. This alone would make q* increase with altitude, but the exponential dependence of es on T counteracts this effect, making the q* decrease rapidly with altitude. Thus a moist parcel usually do not have to rise a lot before it reaches the condensation level Zc where $q>q_*$. At this point and above excess water vapor will condensate creating a visible cloud. The cloud will extend up in the atmosphere until neutral buoyancy. As the parcel rises latent heat is released, resulting in a slower decrease of temperature with height compared to the dry adiabatic as rate.  Thus, a warmer or moister air parcel will result in a taller cloud compared to drier or cooler air. While the temperature of the parcel changes according to the dry adiabatic laps rate below the cloudbase, it follows the saturated adiabat upwards from $z_c$. 
+
+When condensation occurs there will be a release of latent heat in the amount $\delta Q = -L dq$ where $L$ is latent heat of condensation and $dq$ is change in specific humidity $q$. For an air parcel undergoing moist adiabatic displacement one can insert this into \eqref{thermo1} to get 
+
+\begin{equation}
+    c_p dT = \frac{dp}{\rho}-L dq
+\end{equation}
+
+
+
+\subsubsubsection{Types of convection}
+
 
 \subsection{Area}
 
@@ -57,7 +152,7 @@ The proposed method in this study requires annual maxima for each duration as in
 \\
 
 \begin{center}
-\begin{tabular}{ |p{3cm}||p{3cm}|p{3cm}|p{3cm}|  }
+\begin{tabular}{ |p{3cm}||p{3cm}|p{3cm}|p{3cm}|  }[hbt!]
 \hline
 \multicolumn{4}{|c|}{Oslo Stations} \\
 \hline
@@ -81,7 +176,7 @@ The proposed method in this study requires annual maxima for each duration as in
 
 \subsubsection{AROME model and data}
 
-For this study precipitation output from the non-hydrostatic Applications of Research to Operations at Mesoscale (AROME)\cite{seity_arome} model have been used. The model is developed by Météo-France and is operated by a cooperative effort named Meteorological Cooperation on Operational Numerical Weather Prediction (MetCoOp) between the Norwegian Meteorological Institute (MET-Norway) and the Swedish Meteorological and Hydrological Institute (SMHI). AROME is used operationally for high-resolution numerical weather prediction (NWP) since 2008 and has recently been used in a climate-configuration for long-term climate simulations \cite{lind_arome]}. Being one of the first long-term climate simulations on regional convection-permitting (\<4km) scales for the Fenno-Scandinavian region this data-set provides added opportunities for analysis of extreme precipitation.  
+For this study precipitation output from the non-hydrostatic Applications of Research to Operations at Mesoscale (AROME)\cite{seity_arome} model have been used. The model is developed by Météo-France and is operated by a cooperative effort named Meteorological Cooperation on Operational Numerical Weather Prediction (MetCoOp) between the Norwegian Meteorological Institute (MET-Norway) and the Swedish Meteorological and Hydrological Institute (SMHI). AROME is used operationally for high-resolution numerical weather prediction (NWP) since 2008 and has recently been used in a climate-configuration for long-term climate simulations \cite{lind_arome]}. Being one of the first long-term climate simulations on regional convection-permitting (\<4km)scales for the Scandinavian region this data-set provides added opportunities for analysis of extreme precipitation.  
 \\
 \\
 HARMONIE-Climate cycle 38 (HCLIM38) on 3 km resolution with explicit deep convection is the parenting model used in the this study (Lindstedt et al. 2015\cite{lindstedt_hclim}; Lind et al. 2016\cite{lind_hclim}). A comprehensive description of the model system is presented in Belušić et al.(2020)\cite{belusic_hclim}. The model proved strong improvement on representation of precipitation compared to similar model-setups with coarser models in Lind et al. 2020 \cite{lind_arome}. Most evident was the improvement in reduction of "drizzle" and increased occurrence of high intensity precipitation events in addition to better timing and amplitude of the diurnal cycle. The simulations was conducted within the Nordic Convection Permetting Climate Projections project (NorCP), which is one of the leading projects on increasing knowledge of climate changes and processes over the Fenno-Scandinavian region. Here the model-run with the AROME physics package is applied. AROME (Bengtsson et al. 2017)\cite{bengtsson_arome} is designed for convection-permitting scales and non-hydrostatic dynamics with 65 vertical layers. The boundary state for HCLIM38-AROME (HCLIM3) is obtained from the global ERA-Interim reanalysis (Berrisford et al. 2011)\cite{erai}. This data has a horizontal grid of approximately 80 km, available every 6 hour. An alternative set of boundary data from EC-Earth (ECE) is also applied, providing a slightly different climate simulation.    
@@ -91,16 +186,63 @@ HCLIM3
 surface and precip representation
 
 \cite{lind_arome} citation figure arome domain 
-\begin{figure}
+\begin{figure}[hbt!]
     \centering
     \includegraphics[scale=0.4]{figures/arome_domain.png}
     \caption{Domain used for HCLIM38-ALADIN (12km) simulation and domain used for HCLIM38-AROME (3km) simulation in the inner black rectangle. The colorscale represents the altitude above mean sea level in meters, and the magent colored area defines the Fenno-Scandinavian region. Source: Lind et al. 2020 \cite{lind_arome}}
     \label{fig:arome_domain}
 \end{figure}
 
-\subsubsection{AROME performance: an example}
-Maybe an example showing how AROME have performed well on small-scale events and another on where it have performed poorly? 
+\subsubsection{AROME: difficulties with convective forecasting, an example}
 
-\subsection{ting}
+MÜller et al. 2017 \cite{muller} highlights the challenge of precise precipitation forecasting of convective cells. Even though the precipitation amount may be well-forecasted it can be fatal for decision-makers if it is mislocated with a few kilometers. Here a case study illustrating this challenge is presented. 
 
-Anita: check annual maxima as well as returnvalues, might find some interesting info on why the return values are differeing between the methods
+7nt of August 2019 15:00-18:00 UTC a heavy rainfall event occurred in Bærum, Norway. According to a METinfo report \ref{metreport} the event caused local damage, clogged drainage systems and numerous flooded basements. The forecast prior to the event revealed unstable air masses with strong vertical movement throughout southern Norway. Besides an elevated KAPE-index north-west of where the event actually occurred there where little indication for such an event in the Bærum-area. During the event several records for short-duration precipitation was set at the Gjettum station in Bærum: 36,5mm/30min, 47,9mm/1h and 61,3/3h. These recordings have returnperiods of >200 years, >100 years and >50 years respectively. The 24-h accumulated precipitation forecast is produced as a 10-member ensemble mean. The ensemble mean forecast in Figure \ref{fig:ens_mean} show some precipitation in the area west of Bærum with magnitude of around 2 mm/24h.  
+
+\begin{figure}[hbt!]
+    \centering
+    \includegraphics[scale=0.4]{figures/ens_mean.PNG}
+    \caption{24-h ensemble mean precipitation forecast initiated 7th of August 2019 00:00 UTC. The black line is the shoreline in the Oslofjord, Norway. The red star marks the location of the Bærum station.}
+    \label{fig:ens_mean}
+\end{figure}
+
+Ensemble members different realizations of the model, each with a slightly different set of initial conditions. Even though the ensemble mean forecast shows no signs of extreme precipitation the individual members may reveal some red flags. All members are equally a realization of the model, which highlights the uncertainty of the precipitation forecasting within AROME. In Figure \ref{fig:ensmember} two ensemble members show two very different forecasts. One seems to capture the localization and partly the amount of the event quite well while the other predicts no precipitation at all. 
+
+\begin{figure}[hbt!]%
+    \centering
+    \subfloat[\centering Ensemble member 1]{{\includegraphics[width=5.5cm]{figures/ens1.PNG} }}%
+    \qquad
+    \subfloat[\centering Ensemble member 4 ]{{\includegraphics[width=5.5cm]{figures/ens4.PNG} }}%
+    \caption{Two ensemble members from the 24-h accumulated preciptiation forecast initiated 7th of August 2019 at 00:00. The red star marks the Bærum station.}%
+    \label{fig:ensmember}%
+\end{figure}
+
+this case study is also usefull to highlight how the various ensemble members dissagree, and in a way represent different verions of the reality. This is comparable to the climate model and can be used as a pro to why the periods does not have to match exactly.  
+\section{Method}
+
+There are several ways to extract annual maxima from the precipitation data. In the following paragraph the different methods used on this study will be presented.  
+\subsection{Annual Maxima}
+
+The methods used to extract annua maxima from the precipitation data-series. 
+Common:
+From this time-series the annual maxima is extracted for each duration, making a data-series with maximum values with length n equal to number of years.  Something more here or add this to all of them?
+
+\begin{enumerate}
+
+\item 1grid 
+Hereafter named “1GRID”. Select gridpoint closest to the respective station. A sliding filter for each duration is applied, building a timeseries with summed values for each timestep. From this time-series the annual maxima is extracted for each duration, making a data-series with maximum values with length n equal to number of years. 
+
+\item 9grid
+Hereafter named “9GRID”. Select the gridpoint closest to the respective station and the neighbouring gridpoints following a 3x3 pattern. A sliding filter for each duration is applied, building a timeseries with summed values for each timestep. The filter select the maximum value out of the 9 gridpoints for each timestep. Thus a resulting precipitation value for a given duration may consist of precipitation values from different gridpoints. 
+
+\item 9mean
+Hereafter named “9MEAN”. Select the gridpoint closest to the respective station and the neighbouring gridpoints following a 3x3 pattern. A sliding filter for each duration is applied, building a timeseries with summed values for each timestep. The filter select the maximum value for each of the 9 gridpoints, making 9 time-series with annual maximum values for each duration. The mean annual maximum of the 9 is then calculated. 
+
+\item 9max
+Hereafter named “9MAX”. Select the gridpoint closest to the respective station and the neighbouring gridpoints following a 3x3 pattern. A sliding filter for each duration is applied, building a timeseries with summed values for each timestep. The filter select the maximum value for each of the 9 gridpoints, making 9 time-series with annual maximum values for each duration. The max annual maximum of the 9 is then calculated.
+
+\end{enumerate}
+
+Comparison of the methods: 
+1GRID is a plain selection method compared to the other methods. The initial reason for using other methods was that 1GRID was underestimating the resulting IDF-curves compared to the station-based curves for almost all stations and durations. 9GRID is designed to be an optimal selection method is the sense that the absolute maximum values possible for the area as an entity is chosen. This method is artificial compared to the others because a maximum value for any given duration may consist of precipitation values from different gridpoints, where the next maximum value may consist of entirely different gridpoint values.    
+
