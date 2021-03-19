@@ -42,9 +42,9 @@ Given the short temporal scale and the small horizontal scale the convective pre
     \label{fig:cumulus}
 \end{figure}
 
-\subsubsubsection{Convection}
+\subsubsection{Convection}
 
-\subsubsubsection{Dry convection}
+\subsubsection{Dry convection}
 
 Convection is often treated as an adiabatic process. This is a thermodynamic process in which no heat or mass is transferred between the system in question and the surroundings. However, energy can be transferred from the system to the surroundings through work. Being a compressible fluid the density of the atmosphere is a function of both temperature and pressure; $\rho = \rho(p,T)$. Furthermore it obeys the perfect gas law, and $\rho = p/RT$. As a parcel rises from an initial height $z_1$ it moves into an environment of lower pressure at height $z_2$, adjusting to this pressure by expanding along the way. This expansion exerts work on the environment, making the parcel cool. To determine the buoyancy of the parcel at $z_2$ one must know the evolution of the parcel temperature between $z_1$ and $z_2$.
 
@@ -124,7 +124,10 @@ This is the ratio of mas of water to the mass of air er unit volume. Q is conser
 
 \begin{equation}
     q_* = \frac{\frac{e_s}{R_v T}}{\frac{p}{RT}} = \left(\frac{R}{R_v}\right)\frac{e_s}{p}
+    \label{qnote}
 \end{equation}
+
+where $e_s$ is saturated partial pressure of water vapor. 
 
 Implicitly this means that $q_*$ is a function of both temperature and pressure. Lifting a parcel would decrease the pressure and cool the parcel. This alone would make q* increase with altitude, but the exponential dependence of es on T counteracts this effect, making the q* decrease rapidly with altitude. Thus a moist parcel usually do not have to rise a lot before it reaches the condensation level Zc where $q>q_*$. At this point and above excess water vapor will condensate creating a visible cloud. The cloud will extend up in the atmosphere until neutral buoyancy. As the parcel rises latent heat is released, resulting in a slower decrease of temperature with height compared to the dry adiabatic as rate.  Thus, a warmer or moister air parcel will result in a taller cloud compared to drier or cooler air. While the temperature of the parcel changes according to the dry adiabatic laps rate below the cloudbase, it follows the saturated adiabat upwards from $z_c$. 
 
@@ -132,11 +135,52 @@ When condensation occurs there will be a release of latent heat in the amount $\
 
 \begin{equation}
     c_p dT = \frac{dp}{\rho}-L dq
+    \label{adlap}
 \end{equation}
 
+Assuming hydrostatic balance of the environment, $dp/\rho = -gdz$ gives
+
+\begin{equation}
+    d(c_pT + gz + Lq) = 0
+\end{equation}
+
+where $c_pT+gz$ is the dry static energy and $Lq$ is the latent heat content. Combined these two terms are called the moist static energy. Furthermore, since the parcel is always saturated $q$ can be replaced by $q_*$ in Eq.\eqref{adlap}, and since $q_*=q_*(p,T)$ now
+
+\begin{equation}
+    dq_* = \frac{\partial q_*}{\partial p}dp + \frac{\partial q_*}{\partial T}dT
+    \label{dqnote}
+\end{equation}
+
+Inserting Eq. \eqref{qnote} in Eq. \eqref{dqnote} yields 
+
+\begin{equation}
+        \frac{\partial q_*}{\partial p} = -(\frac{R}{R_v})\frac{e_s}{p^2} = -\frac{q_*}{p}
+        \label{qfracp}
+\end{equation}
+and
+\begin{equation}
+            \frac{\partial q_*}{\partial T} = (\frac{R}{R_v})\frac{1}{p}\frac{de_s}{dT} = (\frac{R}{R_v})\frac{\beta e_s}{p} = \beta q_*
+            \label{qfracT}
+\end{equation}
+
+where $\beta e_s = de_s/dT$. Combining Eq. \eqref{qfracp}, Eq. \eqref{qfracT} and Eq. \eqref{adlap} with some rearranging yields
+
+\begin{equation}
+    -\frac{dT}{dz} = \Gamma_s = \Gamma_d \left[\frac{1+Lq_*/RT}{1+\beta Lq_*/c_p} \right]
+\end{equation}
+
+$\Gamma_s$ is called the saturated adiabatic lapse rate. The term inside the brackets are always less than unity, making $\Gamma_s < \Gamma_d$. However, at high latitudes $q_*$ becomes very small, making them close to equal. The qualitative impact on condensation is evident; release of latent heat within a rising parcel makes it warmer and thus more buoyant, destabilizing the atmosphere, that is if
+
+\begin{equation}
+    \frac{dT}{dz} < -\Gamma_s
+\end{equation}
+
+where $\Gamma_s < \Gamma_d$ \cite{marshall}. 
+\textbf{this is conditional stability, dont know if I need to elaborate on this}
 
 
-\subsubsubsection{Types of convection}
+\subsubsection{Types and location of convection}
+
 
 
 \subsection{Area}
