@@ -106,6 +106,27 @@ where $\Gamma_d$ is called the dry adiabatic lapse rate and the notation $e = en
     \end{cases}
     \label{stabcond}
 \end{equation}
+\textbf{or according to CLOUD: ALSO CHECK $\GAMMA_e$ in the above. also, include a figure on this}
+\begin{equation}
+    \begin{rcases}
+      \text{Stable}\\
+      \text{Neutral}\\
+      \text{Unstable}
+    \end{rcases}   
+    \text{if} \left(-\frac{dT}{dZ}\right)_e 
+    \begin{cases}
+      < \Gamma_d \\
+      = \Gamma_d \\
+      > \Gamma_d
+    \end{cases}
+\end{equation}
+
+\begin{equation}
+    \begin{cases}
+        \Gamma = \Gamma_d \\
+        \gamma = \Gamma_e
+    \end{cases}
+\end{equation}
 
 From Eq. \eqref{stabcond} a compressible atmosphere is unstable if temperature decreases with height faster than the adiabatic laps rate. Given $c_p = 1005 Jkg^{-1}K^{-1}$ in Eq. \eqref{drylaps} $\Gamma_d \simeq 10 K km^{-1}$. Typically the dry laps rate decreases from around 6,5 $K km^{-1}$ at low latitudes to around 4.5 $K km^{-1}$ at polar latitudes \ref{lapsrate}. Thus, no dry convection is expected and the atmosphere can generally be considered stable to dry convection.     
 
@@ -172,15 +193,42 @@ where $\beta e_s = de_s/dT$. Combining Eq. \eqref{qfracp}, Eq. \eqref{qfracT} an
 $\Gamma_s$ is called the saturated adiabatic lapse rate. The term inside the brackets are always less than unity, making $\Gamma_s < \Gamma_d$. However, at high latitudes $q_*$ becomes very small, making them close to equal. The qualitative impact on condensation is evident; release of latent heat within a rising parcel makes it warmer and thus more buoyant, destabilizing the atmosphere, that is if
 
 \begin{equation}
-    \frac{dT}{dz} < -\Gamma_s
+    -(\frac{dT}{dz}) < \Gamma_s
 \end{equation}
 
-where $\Gamma_s < \Gamma_d$ \cite{marshall}. 
-\textbf{this is conditional stability, dont know if I need to elaborate on this}
+where $\Gamma_s < \Gamma_d$ \cite{marshall} \textbf{this is not consistent with the below}. 
 
+Thus the stability criteria for moist air is \textbf{make sure the following is consistent with the above. from two different sources. not sure its consistent now! but the writing under the following is correct and consistent with the figure.}
+
+\begin{equation}
+\begin{gathered}
+    \text{Absolutely stable} (-\frac{dT}{dZ})_e < \Gamma_s \\
+    \text{Saturated neutral} (-\frac{dT}{dZ})_e = \Gamma_s \\
+    \text{Conditionally unstable} \Gamma_s < (-\frac{dT}{dZ})_e < \Gamma_d \\
+    \text{Dry neutral} (-\frac{dT}{dZ})_e  = \Gamma_d \\
+    \text{Absolutely unstable} (-\frac{dT}{dZ})_e > \Gamma_d
+    \label{moist_stability}
+\end{gathered}
+\end{equation}
+
+Once a saturated parcel is displaced upwards its temperature will decrease according to the pseudoadiabatic laps rate. If the environmental laps rate is greater (more negative) than $\Gamma_d$ the parcel will be warmer than the surroundings and hence accelerate in the direction of the initial displacement. If the environmental laps rate is smaller (less negative) than $\Gamma_s$ the parcel will be colder than the surroundings and hence accelerate in the direction opposite of the the initial displacement. This stability criterion is illustrated in Figure \eqref{fig:stability}. According to \eqref{moist_stability}, an important difference between moist and dry air is that initially stable moist air may be absolutely unstable or conditionally unstable if lifted.  
+
+\begin{figure}[hbt!]
+    \centering
+    \includegraphics[scale=0.3]{figures/stability_criterie.jpg}
+    \caption{Stability criteria from \url{http://pressbooks-dev.oer.hawaii.edu/atmo/chapter/chapter-5-atmospheric-stability/}}
+    \label{fig:stability}
+\end{figure}
+
+\textbf{maybe include some info on CCL and LCL here?}
 
 \subsubsection{Types and location of convection}
 
+\subsection{Non-stationarity}
+\url{https://agupubs.onlinelibrary.wiley.com/doi/full/10.1002/2016GL072201} \\
+\url{https://www.researchgate.net/publication/262535997_RainIDF_Automated_derivation_of_rainfall_intensity-duration-frequency_relationship_from_annual_maxima_and_partial_duration_series} \\
+\url{https://www.sciencedirect.com/science/article/pii/S2212096317300165} \\
+\url{https://www.nature.com/articles/srep07093}
 
 
 \subsection{Area}
@@ -220,14 +268,22 @@ The proposed method in this study requires annual maxima for each duration as in
 
 \subsubsection{AROME model and data}
 
-For this study precipitation output from the non-hydrostatic Applications of Research to Operations at Mesoscale (AROME)\cite{seity_arome} model have been used. The model is developed by Météo-France and is operated by a cooperative effort named Meteorological Cooperation on Operational Numerical Weather Prediction (MetCoOp) between the Norwegian Meteorological Institute (MET-Norway) and the Swedish Meteorological and Hydrological Institute (SMHI). AROME is used operationally for high-resolution numerical weather prediction (NWP) since 2008 and has recently been used in a climate-configuration for long-term climate simulations \cite{lind_arome]}. Being one of the first long-term climate simulations on regional convection-permitting (\<4km)scales for the Scandinavian region this data-set provides added opportunities for analysis of extreme precipitation.  
+For this study precipitation output from the non-hydrostatic Applications of Research to Operations at Mesoscale (AROME)\cite{seity_arome} model have been used. The model is developed by Météo-France and is operated by a cooperative effort named Meteorological Cooperation on Operational Numerical Weather Prediction (MetCoOp) between the Norwegian Meteorological Institute (MET-Norway) and the Swedish Meteorological and Hydrological Institute (SMHI). AROME is used operationally for high-resolution numerical weather prediction (NWP) since 2008 and has recently been used in a climate-configuration for long-term climate simulations \cite{lind_arome]}. Being one of the first long-term climate simulations on regional convection-permitting (\<4km)scales for the Scandinavian region this data-set provides added opportunities for analysis of extreme precipitation. 
 \\
 \\
-HARMONIE-Climate cycle 38 (HCLIM38) on 3 km resolution with explicit deep convection is the parenting model used in the this study (Lindstedt et al. 2015\cite{lindstedt_hclim}; Lind et al. 2016\cite{lind_hclim}). A comprehensive description of the model system is presented in Belušić et al.(2020)\cite{belusic_hclim}. The model proved strong improvement on representation of precipitation compared to similar model-setups with coarser models in Lind et al. 2020 \cite{lind_arome}. Most evident was the improvement in reduction of "drizzle" and increased occurrence of high intensity precipitation events in addition to better timing and amplitude of the diurnal cycle. The simulations was conducted within the Nordic Convection Permetting Climate Projections project (NorCP), which is one of the leading projects on increasing knowledge of climate changes and processes over the Fenno-Scandinavian region. Here the model-run with the AROME physics package is applied. AROME (Bengtsson et al. 2017)\cite{bengtsson_arome} is designed for convection-permitting scales and non-hydrostatic dynamics with 65 vertical layers. The boundary state for HCLIM38-AROME (HCLIM3) is obtained from the global ERA-Interim reanalysis (Berrisford et al. 2011)\cite{erai}. This data has a horizontal grid of approximately 80 km, available every 6 hour. An alternative set of boundary data from EC-Earth (ECE) is also applied, providing a slightly different climate simulation.    
-ECE
+HARMONIE-AROME is a non-hydrostatic convection-permitting numerical weather prediction model developed, maintained and validated through the shared ALADIN-HIRLAM system, a collaboration of 26 countries on short-range mesoscale NWP. The international research program High Resolution Limited Area Model (HIRLAM) was initiated in 1985 and consists of the National Meteorological Services (NMSs) from 10 countries. Similarly Aire Limitée Adaptation Dynamique Développement International (ALADIN) is a collaboration among 16 central-European NMSs. AROME is a configuration of ALADIN, and the focus of the HIRLAM colaboration in recent years has been on the convective-permitting scale and thus to adapt AROME for use in the common ALADIN-HIRLAM NWP system for accessibility for all collaboration members. \textbf{The paper says: HARMONIE–AROME uses the same nonhydrostatic (NH) dynamical core asAROME-France,which has been developed by ALADIN (Bubnova et al. 1995; Bénard et al. 2010). Har jeg brukt AROME-France eller AROME-HARMONIE?}. The model dynamics of AROME is based on the fully compressible Euler equations \textbf{source on Euler. Simmons and Burrige 1981?)}. Regarding the model physics, at 2.5-km resolution deep convection is expected to be resolved. Hence there are no deep convection parameterization. Shallow convection on the other hand is parameterized though a mass-flux framework consisting of updrafts and thus transport of heat, momentum and moisture. Eddy diffusiveity is parameterized thorugh a turbulence scheme called HARATU. \textbf{for more info on the (dual) mass flux read the article in detail}. The surface physics is simulated by the SURFEX surface scheme \textbf{source on SURFEX}. SURFEX simulates surface aerosols, chemistry processes and other surface variables. Each model grid box is represented by four surface tiles: sea or ocean, lakes, urban areas and nature (soil and vegetation), where the nature-tile is further divided into patches depending on vegetation type. Energy exchange between the surface and atmosphere for the different tiles are simulated with a collection of schemes. Surface topography is is based on Global Multi-resolution Terrain Elevation Data (GMTED2010) \textbf{source? Danielson and Gesch 2011?}. Work is currently done to prepare the model for operational use at increased resolution (100 layers, 0.5-1.3 km). This will improve the representation of both deep and shallow convection. Additionally this work will hopefully result in better understanding of model behaviour in the gray zone between shallow convection and turbulence.\textbf{SOURCE for this entire section: 
+(The HARMONIE–AROME Model Configuration in the ALADIN–HIRLAM
+NWP System. Bengtsson. DOI: 10.1175/MWR-D-16-0417.1)}
+\\
+\\
+HARMONIE-Climate cycle 38 (HCLIM38) on 3 km resolution with explicit deep convection is the parenting model used in the this study (Lindstedt et al. 2015\cite{lindstedt_hclim}; Lind et al. 2016\cite{lind_hclim}). A comprehensive description of the model system is presented in Belušić et al.(2020)\cite{belusic_hclim}. The model proved strong improvement on representation of precipitation compared to similar model-setups with coarser models in Lind et al. 2020 \cite{lind_arome}. Most evident was the improvement in reduction of "drizzle" and increased occurrence of high intensity precipitation events in addition to better timing and amplitude of the diurnal cycle. The simulations was conducted within the Nordic Convection Permetting Climate Projections project (NorCP), which is one of the leading projects on increasing knowledge of climate changes and processes over the Fenno-Scandinavian region. Here the model-run with the AROME physics package is applied. The physics package is designed for convection-permitting scales and non-hydrostatic dynamics with 65 vertical layers (Bengtsson et al. 2017)\cite{bengtsson_arome}. The boundary state for HCLIM38-AROME (HCLIM3) is obtained from the global ERA-Interim reanalysis (Berrisford et al. 2011)\cite{erai}. This data has a horizontal grid of approximately 80 km, available every 6 hour. An alternative set of boundary data from EC-Earth (ECE) is also applied, providing a slightly different climate simulation.    
+
+\textbf{this (Lind et al. 2020. Fenno.Scandinavi) uses: men som jeg nevnte tidligere dekker den kun evaluerings-kjøringen (nedskalert fra ERA-Interim)}
 \\
 HCLIM3
 surface and precip representation
+
+
 
 \cite{lind_arome} citation figure arome domain 
 \begin{figure}[hbt!]
