@@ -39,7 +39,6 @@ Previously the selection method was based on choosing the maximum value per time
 
 make a comment on how the 9grid first method follows the large (100 and 200) returnperiods station idf curves very well for the stations with large confidence intervals. Especially Bygdøy and Besserud and partially Haugenstua (for large durations on Haugenstua).
 
-The two "new"/other 9-grid based selection methods are built differently. Now the annual maximum value for each of the nine  gridpoints for each duration is extracted directly and put into a 3x3 matrix. Either maximum ($MAX$) or mean ($MEAN$)values of the nine is then calculated per duration to give a one-dimensional data series. The $MAX$ alternative is designed to be a less aggressive optimisation of the annual maximum values around the station compared to the other nine-grid maximum selection method \textbf{make a name for this one as well!}. The  $MAX$ maximization method is possibly closer to the real world compared to the \textbf{$XXX$} method. Extracting maximum value for each timestep out of the nine gridpoints might be artificial in one way, since the annual maxima for any duration may be composed from different locations. The $MAX$ method is on the other hand more realistic in the sens that the annul maxima for certain year always origins from one gridpoint. 
 
 \textbf{Here (or later) you can discuss what the station is actually representing. It might be that the $XXX$ method is very representative for the area in general. It would be interesting to check how the station-based IDF curves compares to observations. If these curves are underestimating the observations $XXX$ might be very well suited to represent the overall conditions fr extreme precipitation in the area. Also, describing the methods for extraction should be in the methods section, not here in results}
 
@@ -75,5 +74,7 @@ Duration & 1grid & 9grid & mean9 & max9 \\
 
 
 Even though we (I and Malte) agreed on not using the distance between the curves as any measure, it must be said that the "ax9" method now gives far better overall results compared to the stat.
+
+\subsection{more results}
 
 \subsection{2080-2100}
