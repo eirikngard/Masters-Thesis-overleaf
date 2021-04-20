@@ -77,25 +77,47 @@ Even though we (I and Malte) agreed on not using the distance between the curves
 
 \subsection{Annual Maxima}
 
+Investigating how the annual maxima time-series of the stations and the model behave might provide information on the nature of the IDF values and their uncertainties. Figure \ref{fig:Am_stations} shows AM for all stations for 15 minutes and 24 hours duration for station 18701 Blindern. The black line are the mean AM precipitation value. Even though Figure \ref{fig:AM_stations} only show two of the durations, analysis show large variations in AM between stations across all durations for most stations. The spread for each yearly value seems to be quite large. A few years like 2003 and 2004 have available station AM values close to each other for all durations. This also apply to other years, but in most cases the number of data-points for those years are only 2-3. From 1968 to 1996 there are mostly three stations available each year. In this period some years have one or two stations available. Thus, four to five stations governs the AM pattern for all durations more than half of the total time-series length from 1968 to 2018. From around year 2000 the number of available stations each year increases. This also increases the spread in this years. Some stations have largest or highest AM value a specific year for some or all durations, but this is more not than often the case.      
+
+\begin{figure}[hbt!]
+    \centering
+    \includegraphics[scale=0.8]{figures/AM_stations.png}
+    \caption{A caption.}
+    \label{fig:AM_stations}
+\end{figure}
+\\
+\\
+Now we investigate how the modelled AM precipitation compares to the station AM. In Figure \ref{fig:AM_stat_mod} the station mean AM from Figure \ref{fig:AM_stations} is plotted with station average AM from the different AM methods for durations 15, 60, 360 and 1440 minutes from 1985 to 2005. The shaded gray area is one standard deviation (STD) of the station mean AM for the respective duration. The most noticeable feature is that the four methods used with the modelled precipitation overlap quite well with the station-curve. An exception that with longer duration the 9GRID method appears to fall increasingly far outside the 1 STD of the station-curve. For all durations 1GRID and 9MEAN AM are close to identical throughout the 20 years, while MAX falls between 9GRID and MEAN/1GRID. In periods like 1985-1991 
+
+Another feature is the relative consistent AM values for the modelled precipitation. The year to year fluctuations are modest compared to the findings from the station-based AM precipitation in Figure \ref{fig:AM_stations}.  
+
+\begin{figure}[hbt!]
+    \centering
+    \includegraphics[scale=0.8]{figures/AM_stat_mod.png}
+    \caption{A caption.}
+    \label{fig:AM_stat_mod}
+\end{figure}
+\\
+\\
 Annual maxima differs substantially between the methods for the individual stations and durations. The variations in AM could partially account for the spread in the resulting IDF-curves. In Figure \ref{fig:AM_dur} a heatmap of the duration average variance of annual maximum precipitation for each station and each method is plotted. The number within the parenthesis on the y-axis refers to the time-series length of the station-data. For the other methods the time-series length is 20 years for all stations. The most noticeable feature is the large range of variance on the station-based data compared to the other method. Large variance indicates large spread, and hence the year to year difference in annual maxima is larger for the station data compared to the modelled data. Station 17980 Ljabruvegen has the smallest STD at XXX while station 18815 Bygdøy has the largest STD at for the station-based annual maxima. It is also noticeable how the STD for stations like 18701 Blindern and 18020 Lambergseter with long time series is on the high end of the scale amongst these stations. At the same time short time-series stations like 18980 Lilleaker, 18920 Besserud and 18640 Vestre Vika also have high relative STD.  
 
 \begin{figure}[hbt!]
     \centering
-    \includegraphics[scale=0.6]{figures/AM_dur_avg_variance.png}
+    \includegraphics[scale=0.6]{figures/AM_dur_avg_std.png}
     \caption{Duration average variance of annual maximum precipitation data.}
     \label{fig:AM_dur}
 \end{figure}
 
-The MEAN method has a very consistent STD across all stations.
+The MEAN method has a very consistent, low STD at around 4 mm across all stations. Also MAX and G1 has low STDs, but the differences between the stations are greater. The largest STD for the MEAN and G9 method are found at station 18701 and the largest for the G1 and STAT are found at station 18815. \textbf{DISCUSSION: 18701 has a long time series while 18815 has a short. Thus its not obvious that the time series length is closely linked to the STD of the AM.}
 
-
-DO STD IN stead!! 
+Figure \ref{fig:AM_stat} shows a heatmap of station average STD of annual maximum precipitation for the different AM methods. All durations are listed on the y-axis while the methods are listed on the x-axis. The first noticeable feature of the plot is the increasing STD with increasing duration across all methods. Only with exception at duration 180 minutes for the G1 method and at 360 minutes for the MAX method the STD are increasing with increasing duration. MEAN has the overall smallest STD with 7.66 mm as maximum value. MAX and G1 has very similar STD across the duration. G9 is the method with STD most similar to STAT.   
 
 \begin{figure}[hbt!]
     \centering
-    \includegraphics[scale=0.6]{figures/AM_station_avg_variance.png}
-    \caption{Station average variance of annual maximum precipitation data.}
-    \label{fig:AM_dur}
+    \includegraphics[scale=0.4]{figures/AM_station_avg_std.png}
+    \caption{Station average STD of annual maximum precipitation data.}
+    \label{fig:AM_stat}
 \end{figure}
+
 
 \subsection{2080-2100}
