@@ -87,9 +87,7 @@ Investigating how the annual maxima time-series of the stations and the model be
 \end{figure}
 \\
 \\
-Now we investigate how the modelled AM precipitation compares to the station AM. In Figure \ref{fig:AM_stat_mod} the station mean AM from Figure \ref{fig:AM_stations} is plotted with station average AM from the different AM methods for durations 15, 60, 360 and 1440 minutes from 1985 to 2005. The shaded gray area is one standard deviation (STD) of the station mean AM for the respective duration. The most noticeable feature is that the four methods used with the modelled precipitation overlap quite well with the station-curve. An exception that with longer duration the 9GRID method appears to fall increasingly far outside the 1 STD of the station-curve. For all durations 1GRID and 9MEAN AM are close to identical throughout the 20 years, while MAX falls between 9GRID and MEAN/1GRID. In periods like 1985-1991 
-
-Another feature is the relative consistent AM values for the modelled precipitation. The year to year fluctuations are modest compared to the findings from the station-based AM precipitation in Figure \ref{fig:AM_stations}.  
+Now we investigate how the modelled AM precipitation compares to the station AM. In Figure \ref{fig:AM_stat_mod} the station mean AM from Figure \ref{fig:AM_stations} is plotted with station average AM from the different AM methods for durations 15, 60, 360 and 1440 minutes from 1985 to 2005. The shaded gray area is one standard deviation (STD) of the station mean AM for the respective duration. The most noticeable feature is that the four methods used with the modelled precipitation overlap quite well with the station-curve. An exception that with longer duration the 9GRID method appears to fall increasingly far outside the 1 STD of the station-curve. For all durations 1GRID and 9MEAN AM are close to identical throughout the 20 years, while MAX falls between 9GRID and MEAN/1GRID. In periods like 1988-1992 and 1995-2000 most durations up to 360 minutes the modelled AM and the station-based AM agree very well, while the durations 360 minutes and larger have a good agreement between the model and the measurements in the period 1989-1995. For almost all years and duration one or more of the modelled methods are within the standard deviation of the measurements. However a few exceptions exists, like the year 2001 where all modeled AM methods are outside the measurement STD for durations up to 360 minutes. Another noticeable feature is that the 9GRID method appears to increasingly overestimate the AM values with increasing duration. This might suggest hat the method is not very well suited for IDF calculations, especially for the larger durations.   
 
 \begin{figure}[hbt!]
     \centering
@@ -118,6 +116,23 @@ Figure \ref{fig:AM_stat} shows a heatmap of station average STD of annual maximu
     \caption{Station average STD of annual maximum precipitation data.}
     \label{fig:AM_stat}
 \end{figure}
+
+\subsubsection{Station IDF}
+
+A version of the IDF-curves are presented in Figure \ref{fig:IDF_stat_retper}. Here station-based precipitation magnitude are plotted for all durations at all stations for 2, 20 and 200 year recurrence interval. Despite a relatively short distance between the stations of a few kilometers there are relatively large differences in expected precipitation between them. Station Besserud and station Blindern is only 3km apart, however the 5 year return period return-level at 24h is already more than 10 mm. For the 200 year return period this difference is around 50 mm. In general the difference between high and low return-levels across the stations are larger for larger return periods and smaller for smaller return periods.
+
+\begin{figure}[hbt!]
+    \centering
+    \includegraphics[scale=0.3]{figures/IDF_stat_retper.png}
+    \caption{Station average STD of annual maximum precipitation data.}
+    \label{fig:IDF_stat_retper}
+\end{figure}
+
+Stations like Ljabruvegen and Blindern have a small spread between the 2 year and the 200 year return-level for all durations, while stations like Haugenstua and Besserud has a large spread between the return-levels. The varying station length may contribute to this difference. Blindern has 48 years of data and a small spread compared to Besserud with 13 years of data, thus it appear that the time-series length has a great impact on the spread of the return-levels for each station. On the other hand Ljabruvegen has 17 years of data and a small spread compared to Haugenstua with 15 years of data, so the time-series length is not the only thing affecting the return-levels.   
+
+\textbf{Include figure with real IDF for stat all stations? Like the one above but with intensity} 
+
+\subsubsection{Introducing modelled precipitation}
 
 
 \subsection{2080-2100}
