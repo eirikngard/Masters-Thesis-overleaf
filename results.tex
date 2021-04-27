@@ -19,7 +19,6 @@ Duration & 1grid & 9grid & diff 1g-9g \\
 200 & 20.02 & 14.58 & 5.44
 \end{tabular}
     \label{grid}
-\end{tabular}
 \caption{Grid selection. Positive difference: 9grid is better. Negative: 1grid is better}
 \end{table}
 
@@ -74,6 +73,62 @@ Duration & 1grid & 9grid & mean9 & max9 \\
 
 
 Even though we (I and Malte) agreed on not using the distance between the curves as any measure, it must be said that the "ax9" method now gives far better overall results compared to the stat.
+
+\subsection{Intensity plots}
+
+Precipitation intensity are in some cases more applicable than precipitation amount. In Figure \ref{fig:intensity_blindern_10} the 10 year return-level precipitation intensity is plotted for all durations and all AM methods at Blindern station. The intensity level difference is largest for small durations, decreasing to very small differences between the AM methods at 24 hours. At around 44mm/h the STAT method has the largest value at 15 minutes duration, while the MEAN method measures around 28  mm/h. Marked with the dotted lines in Figure \ref{fig:intensity_blindern_10} the 97.5 percentile value at 15 minutes is almost identical for STAT, MAX9 and 9GRID at approximately 55mm/h. 9GRID quickly turns into the method with largest intensity, also being the only method with a distinct intensity at 24 hours compared to the other methods. MAX has slightly higher intensity for all durations except 15 minutes compares to STAT, but are overall very similar. From 1 hour duration all methods except 9GRID and MEAN are within the confidence interval of STAT. On smaller durations 9GRID and MAX are the only to within the confidence levels of STAT.  
+
+\begin{figure}[hbt!]
+    \centering
+    \includegraphics[scale=0.3]{figures/ECE_1985_real_idf_blindern.png}
+    \caption{A caption.}
+    \label{fig:intensity_blindern_10}
+\end{figure}
+
+Considering different return-levels a few features appears. Firstly, the STAT intensity and top/bottom percentile get increasingly larger compared to the other methods for short durations up to 1h with increasing return-period. This is probably due to the large confidence interval om the STAT compared to the modelled alternatives. For the 2 year return-period MEAN and 1GRID is the best fit to STAT intensity, while for increasing return-period up to 20 years the MAX method becomes increasingly closer to STAT for most durations. From 20 years onward the MAX intensity is very similar \textbf{close to identical for Blidnern)} to STAT for durations larger than 1 hour. As seen in Figure \ref{fig:intensity_blindern_200} \textbf{you also have this figure un-zoomed} 9GRID appears to have a gentler slope compared to the other methods as the return-period increases.  
+\\
+\\
+\begin{figure}[hbt!]
+    \centering
+    \includegraphics[scale=0.1]{figures/ECE_1985_2_20_200_zomed.png}
+    \caption{A caption.}
+    \label{fig:intensity_blindern_200}
+\end{figure}
+\\
+\\
+\textbf{commenting on figure from max-mean-evaluation of 2, 20 and 200 year return levels Blindern.} Evaluating the return-levels in Figure \ref{fig:idf_blindern_2_200} instead of intensity reveals some other features. From Figure \ref{fig:idf_blindern_2_200} one can observe that the MEAN and 1GRID are the only methods inside the STAT confidence interval for the 2 year return-period. For all other return-periods MAX is also well within the STAT confidence interval. At 50 year return-period 9GRID is included in the STAT confidence interval from 30 min to 6 hours duration. At 100 years RP it is included until around 18 hours duration, while at 200 RP 9GRID is within the STAT confidence for all durations. However, for all RP 9GRID is a round 50 \% larger than STAT at 24 hours duration. Similarly to Figure \ref{fig:intensity_blindern_200} (check if its the correct figure, the one wigh 2-200), Figure \ref{fig:idf_blindern_2_200} reveals that for small RP STAT is very equal to MEAN and 1GRID, while it becomes closer to MAX as the RP increases.
+
+\begin{figure}[hbt!]
+    \centering
+    \includegraphics[scale=0.4]{figures/ECE_1985_idf_blindern_2_20_200.png}
+    \caption{A caption.}
+    \label{fig:idf_blindern_2_200}
+\end{figure}
+
+Another feature of the precipitation magnitude curves from Figure \ref{fig:idf_blindern_2_200} is the enormous confidence intervals, especially at large RP. Already at at 20 year RP the 95 \% confidence interval for 6 hour duration is 42 to 66 mm, and at 24 hours duration its around 60 to 125 mm. Bearing in mind this is the Blindern station with the longest, 48 year, data-series, these confidence intervals are large. For short durations the MEAN confidence interval is close to that of STAT, while on the longer durations MAX is closest on the 2.5 percentile and the MAX and 1GRID is closest on the 97.5 percentile. For all return-periods the 9GRID top-percentile is sky-high and way above any other values. \textbf{Mayby include an example from another station as well, which does not look "as good" as Blindern?}
+\textbf{comment somewhere on the shape of the curves. Why are they steep in the beginning and then smoothening?}
+
+\textbf{connet the following with the table above with percentage differnce from STAT} To investigate how the AM methods performs for the entire Oslo area the station- and duration IDF average precipitation amounts for all 12 stations and all listed durations from 30 minutes to 24 hours are calculated for each return-period. The result is displayed in Figure \ref{fig:table_dur_stat}. In panel A the 9GRID duration- and station average is the only method producing values larger than STAT. Both STAT and 9GRID are increasing at approximately the same rate with increasing return-period, around 0.24 mm/year on average. The MEAN and 1GRID method both have smaller values compared to STAT, increasing at around 0.14 mm/year. The MAX method are very similar to STAT for 2,5 and 10 years, then underestimating it slightly towards the larger RP. With increasing precipitation magnitude of around 0.20 mm/year In panel B of Figure \ref{fig:table_dur_stat} the individual curves from panel A are plotted as percentage of the station- and duration average STAT precipitation magnitude value. MAX method has the smallest average deviation from STAT for all RP except 200 years, where the 9GRID has the smallest deviation. \textbf{not sure if both panels is really necessary. can skip one of them an shorten the text a bit here.}      
+
+\begin{figure}
+    \begin{center}
+        \includegraphics[scale=0.4]{figures/table_avg_dur_stat.png}
+    \end{center}
+    \caption{A PGF histogra.}
+    \label{fig:table_dur_stat}
+\end{figure}
+
+Despite their close proximity, the precipitation values for a given return-period varies substantially amongst the stations. Figure \ref{fig:1985_all_stat} displays 10 year return-values for all stations and AM methods. The shaded green area indicates the 95 \% cofidence interval for STAT. As indicated by the number after each station name, the STAT data-series length for the specific station varies. For the two stations with longest data-series, Blindern and Vestli, 9GRID is outside STAT top percentile, thus overestimating the return-level. The confidence interval Blindern and Vestli are also the smallest of the 12 stations. For stations like Lilleaker, hovin, Lamberseter and Disen 9GRID is right around the STAT top percentile, sometimes within and sometimes outside. For the Haugenstua, Bygdøy and Besserud station 9GRID is by far closest, and at times almost perfectly aligned with the STAT mean value. Common for these three is the relatively short STAT data-series length, with 15, 16 and 13 years respectively. For the other 9 stations MAX appears to provide the overall best fit. However, as the RP increases MAX is loosing its position as overall best "fit" to 9GRID for a few stations and durations.           
+
+\begin{figure}
+    \begin{center}
+        \includegraphics[width=20cm,height=8cm,keepaspectratio]{figures/10_ECE_1985_all_stat.png}
+    \end{center}
+    \caption{A PGF histogra.}
+    \label{fig:1985_all_stat}
+\end{figure}
+
+The MEAN and 1GRID methods provide very similar return-levels for all stations and all RP. For 2 year RP they have the best fit to STAT at Blindern Vestrevika, Vestli and Hausmannsgate for all durations, but also to Lilleaker and Disen for durations smaller than 12 hours. 
 
 \subsection{Annual Maxima}
 
@@ -132,7 +187,22 @@ Stations like Ljabruvegen and Blindern have a small spread between the 2 year an
 
 \textbf{Include figure with real IDF for stat all stations? Like the one above but with intensity} 
 
+
+
 \subsubsection{Introducing modelled precipitation}
 
+\subsection{sub malte}
+
+ECE-ERAI: slopes, regimes: convective or stratiform. Should hypothesise this! -> becomes more differnt -> stratiform precipitation more different between ECE and ERAI. 
+
+What is triggering convective preciptiation at BLindern? Why is this different in ECE/ERAI?
+
+What is important driver for stratiform? How much precip is transported into the area? 
+
+Cant disqualifie method based on True/False (confidence), discuss instead. 
+
+Suggestion: Stick to ECE. Drp ERAI, use ECE future instead. Stick to GCM since AROME is GCM. Do not include reanalysis data, complicated for this cliamte model study.
+
+Can bring ERAI in at the end in "what needs to be done"?
 
 \subsection{2080-2100}
